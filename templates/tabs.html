@@ -1,0 +1,33 @@
+{% extends "head.html" %}
+
+{% block title %}Tabs{% endblock %}
+
+{% block content %}
+<!--MAIN TITLE-->
+<h1 class="center">
+	Tabs
+</h1><hr>
+
+<!--BODY-->
+
+{% for item in playlist %}
+
+{% if item['new'] == True %}
+	<h2 style="color: white;">{{item['artist']}}</h2>
+{% endif %}
+
+<p style="margin-left: 40px">
+
+<a href="{{url_for('static', filename=item['pdf_location'])}}" target="_blank">{{item['song']}}</a><br>
+
+{% if item['mp3_location'] != None %}
+	<audio controls>
+		<source src="{{url_for('static', filename=item['mp3_location'])}}" type="audio/mpeg">
+	</audio>
+{% endif %}
+
+</p>
+
+{% endfor %}
+
+{% endblock %}

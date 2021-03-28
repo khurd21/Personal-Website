@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Loading Scene</title>
+        <style>
+            {
+                box-sizing: border-box;
+            }
+            h1 {
+                font-size: 50px;
+            }
+            body {
+                margin: 0;
+                font-size: 100%;
+            }
+            .center {
+                text-align: center;
+                color: white;
+            }
+            .column {
+                float: left;
+                color: white;
+            }
+            .left {
+                width: 33.33%;
+            }
+            .middle {
+                width: 33.33%;
+            }
+            .right {
+                width: 33.34%;
+            }
+            .row: after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+        ul {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background-color: #444;
+            height: 100%;
+            overflow: auto;
+        }
+        li {
+            float: left;
+        }
+        #nav li a {
+            display: block;
+            color: #000;
+            padding: 12px 14px;
+            text-decoration: none;
+        }
+        
+        #nav li a.active {
+            background-color: #808080;
+            color: white;
+        }
+        
+        #nav li a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
+        #links a:link, a:visited {
+                background-color: #000;
+                color: white;
+                padding: 15px 25px;
+                text-align: center;
+                text-decoration: none;
+                dislay: inline-block;
+            }
+        #links a:hover, a:active {
+            background-color: grey;
+        }
+        </style>
+    </head>
+    
+    <body style="background-color: grey">
+        <ul id="nav">
+            <li><a href="{{url_for('home_page')}}">Main</a></li>
+            <li><a class="active" href="{{url_for('projects')}}">Projects</a></li>
+            <li><a href="{{url_for('my_music')}}">My Music</a></li>
+            <li><a href="{{url_for('tabs')}}">Tabs</a></li>
+            <li><a href="{{url_for('about_me')}}">About Me</a></li>
+        </ul>
+        <h1 style="text-align: center">
+            Loading Scene
+        </h1>
+        
+        <h3 style="text-align: center">
+            Made by Kyle Hurd
+            <hr>
+        </h3>
+        
+        <div>
+            <div>
+                <!-- HTML generated using hilite.me -->
+                <div style="background: #111111; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-style: italic; background-color: #0f140f"></span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  LoadingScene.cpp</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Flappy Bird</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Created by Kyle Hurd on 11/20/20.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Copyright © 2020 Kyle Hurd. All rights reserved.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Description</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Within the namespace LoadingScene is one function load() that handles</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  the loading screen.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  The loading screen contains a title, subtitle, and sprite of the Flappy Bird.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  The objects are centered on the x-axis of the screen and are offsetted by the y-axis,</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  creating the loading screen image. Upon the user inputting a SPACE, the load() function</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  will return to the calling function which will be performed in main() located in the</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  main.cpp file.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &quot;LoadingScene.hpp&quot;</span>
+
+                <span style="color: #fb660a; font-weight: bold">namespace</span> <span style="color: #ffffff">LoadingScene</span> <span style="color: #ffffff">{</span>
+
+                <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ffffff">load(sf::RenderWindow</span> <span style="color: #ffffff">&amp;window)</span> <span style="color: #ffffff">{</span>
+                    <span style="color: #ffffff">print(</span><span style="color: #0086d2">&quot;Entered MenuScene.&quot;</span><span style="color: #ffffff">);</span>
+                    
+                    <span style="color: #fb660a; font-weight: bold">const</span> <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">x</span> <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">,</span> <span style="color: #ffffff">y</span> <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">;</span>
+                    
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Modifying Background</span>
+                    <span style="color: #ffffff">sf::Texture</span> <span style="color: #ffffff">BackgroundTexture;</span>
+                    <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(!BackgroundTexture.loadFromFile(</span><span style="color: #0086d2">&quot;Resources/Sprites/PixeledMenuWSU1.jpg&quot;</span><span style="color: #ffffff">))</span> <span style="color: #ffffff">{</span>
+                        <span style="color: #ffffff">print(</span><span style="color: #0086d2">&quot;Could not load PixeledMenuWSU1.jpg from file&quot;</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">}</span>
+                    <span style="color: #ffffff">sf::Sprite</span> <span style="color: #ffffff">Background(BackgroundTexture);</span>
+                    <span style="color: #ffffff">Background.setScale(</span><span style="color: #0086f7; font-weight: bold">1.03</span><span style="color: #ffffff">,</span> <span style="color: #0086f7; font-weight: bold">1.04</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">Background.setPosition(-</span><span style="color: #0086f7; font-weight: bold">4</span><span style="color: #ffffff">,</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">);</span>
+                    
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Modifying Bird Texture</span>
+                    <span style="color: #ffffff">sf::Texture</span> <span style="color: #ffffff">Birdtexture;</span>
+                    <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(!Birdtexture.loadFromFile(</span><span style="color: #0086d2">&quot;Resources/Sprites/FlappyBird.png&quot;</span><span style="color: #ffffff">))</span> <span style="color: #ffffff">{</span>
+                        <span style="color: #ffffff">print(</span><span style="color: #0086d2">&quot;Could not load FlappyBird.png&quot;</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">}</span>
+                    
+                    <span style="color: #ffffff">Bird::BirdSprite</span> <span style="color: #ffffff">bird(Birdtexture,</span> <span style="color: #ffffff">x,</span> <span style="color: #ffffff">y);</span>
+                    <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">temp(WIDTH</span> <span style="color: #ffffff">/</span> <span style="color: #0086f7; font-weight: bold">2</span><span style="color: #ffffff">,</span> <span style="color: #ffffff">HEIGHT</span> <span style="color: #ffffff">/</span> <span style="color: #0086f7; font-weight: bold">2</span> <span style="color: #ffffff">-</span> <span style="color: #0086f7; font-weight: bold">75</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">bird.centerOrigin();</span>
+                    <span style="color: #ffffff">bird.setPosition(temp);</span>
+                    
+                    <span style="color: #ffffff">sf::Text</span> <span style="color: #ffffff">title;</span>
+                    <span style="color: #ffffff">sf::Text</span> <span style="color: #ffffff">subTitle;</span>
+                    <span style="color: #ffffff">sf::Text</span> <span style="color: #ffffff">userInput;</span>
+                    <span style="color: #ffffff">sf::FloatRect</span> <span style="color: #ffffff">textRect;</span>
+                    <span style="color: #ffffff">sf::Font</span> <span style="color: #ffffff">font;</span>
+
+                    <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(!font.loadFromFile(</span><span style="color: #0086d2">&quot;Resources/Fonts/sansation.ttf&quot;</span><span style="color: #ffffff">))</span> <span style="color: #ffffff">{</span>
+                        <span style="color: #ffffff">print(</span><span style="color: #0086d2">&quot;Could not load sansation.ttf&quot;</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">}</span>
+                    
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Modifying the Main Title</span>
+                    <span style="color: #ffffff">title.setFont(font);</span>
+                    <span style="color: #ffffff">title.setString(</span><span style="color: #0086d2">&quot;THE FLAPPIEST BIRD&quot;</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">title.setCharacterSize(</span><span style="color: #0086f7; font-weight: bold">50</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">title.setFillColor(sf::Color::Yellow);</span>
+                    <span style="color: #ffffff">title.setOrigin(title.getLocalBounds().left</span> <span style="color: #ffffff">+</span> <span style="color: #ffffff">title.getLocalBounds().width</span> <span style="color: #ffffff">/</span> <span style="color: #0086f7; font-weight: bold">2.0f</span><span style="color: #ffffff">,</span>
+                                    <span style="color: #ffffff">title.getLocalBounds().top</span> <span style="color: #ffffff">+</span> <span style="color: #ffffff">title.getLocalBounds().height</span> <span style="color: #ffffff">/</span> <span style="color: #0086f7; font-weight: bold">2.0f</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">title.setPosition((</span><span style="color: #cdcaa9; font-weight: bold">int</span><span style="color: #ffffff">)WIDTH</span> <span style="color: #ffffff">/</span> <span style="color: #0086f7; font-weight: bold">2</span><span style="color: #ffffff">,</span> <span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">int</span><span style="color: #ffffff">)HEIGHT</span> <span style="color: #ffffff">/</span> <span style="color: #0086f7; font-weight: bold">2</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">title.setOutlineColor(sf::Color::Black);</span>
+                    <span style="color: #ffffff">title.setOutlineThickness(</span><span style="color: #0086f7; font-weight: bold">8</span><span style="color: #ffffff">);</span>
+                    
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Modifying the Sub Title</span>
+                    <span style="color: #ffffff">subTitle.setFont(font);</span>
+                    <span style="color: #ffffff">subTitle.setString(</span><span style="color: #0086d2">&quot;Press ENTER to continue...&quot;</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">subTitle.setCharacterSize(</span><span style="color: #0086f7; font-weight: bold">25</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">subTitle.setFillColor(sf::Color::Yellow);</span>
+                    <span style="color: #ffffff">subTitle.setOrigin(subTitle.getLocalBounds().left</span> <span style="color: #ffffff">+</span> <span style="color: #ffffff">subTitle.getLocalBounds().width</span> <span style="color: #ffffff">/</span> <span style="color: #0086f7; font-weight: bold">2</span><span style="color: #ffffff">,</span>
+                                       <span style="color: #ffffff">subTitle.getLocalBounds().top</span> <span style="color: #ffffff">+</span> <span style="color: #ffffff">subTitle.getLocalBounds().height</span> <span style="color: #ffffff">/</span> <span style="color: #0086f7; font-weight: bold">2</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">subTitle.setPosition((</span><span style="color: #cdcaa9; font-weight: bold">int</span><span style="color: #ffffff">)WIDTH</span> <span style="color: #ffffff">/</span> <span style="color: #0086f7; font-weight: bold">2</span><span style="color: #ffffff">,</span> <span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">int</span><span style="color: #ffffff">)HEIGHT</span> <span style="color: #ffffff">/</span> <span style="color: #0086f7; font-weight: bold">2</span> <span style="color: #ffffff">+</span> <span style="color: #0086f7; font-weight: bold">50</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">subTitle.setOutlineColor(sf::Color::Black);</span>
+                    <span style="color: #ffffff">subTitle.setOutlineThickness(</span><span style="color: #0086f7; font-weight: bold">8</span><span style="color: #ffffff">);</span>
+                    
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Modifying Window</span>
+                    <span style="color: #fb660a; font-weight: bold">while</span> <span style="color: #ffffff">(window.isOpen())</span> <span style="color: #ffffff">{</span>
+                        <span style="color: #ffffff">sf::Event</span> <span style="color: #ffffff">event;</span>
+                        <span style="color: #fb660a; font-weight: bold">while</span> <span style="color: #ffffff">(window.pollEvent(event))</span> <span style="color: #ffffff">{</span>
+                            <span style="color: #fb660a; font-weight: bold">switch</span> <span style="color: #ffffff">(event.type)</span> <span style="color: #ffffff">{</span>
+                                <span style="color: #fb660a; font-weight: bold">case</span> <span style="color: #ffffff">sf</span>:<span style="color: #ffffff">:Event::KeyPressed:</span>
+                                    <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(event.key.code</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">sf::Keyboard::Escape)</span> <span style="color: #ffffff">{</span>
+                                        <span style="color: #ffffff">window.close();</span>
+                                        <span style="color: #ffffff">print(</span><span style="color: #0086d2">&quot;Window is closed.&quot;</span><span style="color: #ffffff">);</span>
+                                    <span style="color: #ffffff">}</span>
+                                    <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(event.key.code</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">sf::Keyboard::Enter)</span> <span style="color: #ffffff">{</span>
+                                        <span style="color: #ffffff">print(</span><span style="color: #0086d2">&quot;Enter key pressed.&quot;</span><span style="color: #ffffff">);</span>
+                                        <span style="color: #ffffff">currentState</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">MENU;</span>
+                                        <span style="color: #fb660a; font-weight: bold">return</span><span style="color: #ffffff">;</span>
+                                    <span style="color: #ffffff">}</span>
+                                    <span style="color: #fb660a; font-weight: bold">break</span><span style="color: #ffffff">;</span>
+                                <span style="color: #fb660a; font-weight: bold">case</span> <span style="color: #ffffff">sf</span>:<span style="color: #ffffff">:Event::KeyReleased:</span>
+                                    <span style="color: #fb660a; font-weight: bold">break</span><span style="color: #ffffff">;</span>
+                                <span style="color: #ffffff">default:</span>
+                                    <span style="color: #fb660a; font-weight: bold">break</span><span style="color: #ffffff">;</span>
+                            <span style="color: #ffffff">}</span>
+                        <span style="color: #ffffff">}</span>
+                        <span style="color: #ffffff">window.clear(sf::Color::Black);</span>
+                        <span style="color: #ffffff">window.draw(Background);</span>
+                        <span style="color: #ffffff">window.draw(title);</span>
+                        <span style="color: #ffffff">window.draw(subTitle);</span>
+                        <span style="color: #ffffff">window.draw(userInput);</span>
+                        <span style="color: #ffffff">window.draw(bird.getSprite());</span>
+                        <span style="color: #ffffff">window.display();</span>
+                    <span style="color: #ffffff">}</span>
+                <span style="color: #ffffff">}</span>
+
+                <span style="color: #ffffff">}</span>
+                </pre></div>
+
+
+            </div>
+            <br><br>
+            <div>
+                <!-- HTML generated using hilite.me -->
+                <div style="background: #111111; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-style: italic; background-color: #0f140f"></span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  LoadingScene.hpp</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Flappy Bird</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Created by Kyle Hurd on 11/20/20.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Copyright © 2020 Kyle Hurd. All rights reserved.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Description</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Within the namespace LoadingScene is one function load() that handles</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  the loading screen.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  The loading screen contains a title, subtitle, and sprite of the Flappy Bird.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  The objects are centered on the x-axis of the screen and are offsetted by the y-axis,</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  creating the loading screen image. Upon the user inputting a SPACE, the load() function</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  will return to the calling function which will be performed in main() located in the</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  main.cpp file.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#ifndef LoadingScene_hpp</span>
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#define LoadingScene_hpp</span>
+
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &lt;SFML/Audio.hpp&gt;</span>
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &lt;SFML/Graphics.hpp&gt;</span>
+
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">// Classes</span>
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &quot;Classes/Bird.hpp&quot;</span>
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &quot;Classes/Pipes.hpp&quot;</span>
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &quot;Classes/helperFunctions.hpp&quot;</span>
+
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &lt;fstream&gt;</span>
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &lt;iostream&gt;</span>
+
+                <span style="color: #fb660a; font-weight: bold">namespace</span> <span style="color: #ffffff">LoadingScene</span> <span style="color: #ffffff">{</span>
+
+                <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ffffff">load(sf::RenderWindow</span> <span style="color: #ffffff">&amp;);</span>
+
+                <span style="color: #ffffff">}</span>
+
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#endif </span><span style="color: #008800; font-style: italic; background-color: #0f140f">/* LoadingScene_hpp */</span><span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f"></span>
+                </pre></div>
+            </div>
+        </div>
+    </body>
+</html>

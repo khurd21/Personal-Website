@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>{% block title %}kHurd Website{% endblock %}</title>
+		<link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+    </head>
+    
+    <body style="background-color: grey">
+        <ul id="nav">
+			{% if current_page=='Main' %}
+				<li><a class ="active" href="{{url_for('home_page')}}">Main</a></li>	
+			{% else %}
+            	<li><a href="{{url_for('home_page')}}">Main</a></li>
+			{% endif %}
+			{% if current_page=='Projects' %}
+				<li><a class ="active" href="{{url_for('projects')}}">Projects</a></li>
+			{% else %}
+				<li><a href="{{url_for('projects')}}">Projects</a></li>
+			{% endif %}
+			{% if current_page=='My Music' %}
+				<li><a class="active" href="{{url_for('my_music')}}">My Music</a></li>
+			{% else %}
+				<li><a href="{{url_for('my_music')}}">My Music</a></li>
+			{% endif %}
+			{% if current_page=='Tabs' %}
+				<li><a class="active" href="{{url_for('tabs')}}">Tabs</a></li>
+			{% else %}
+				<li><a href="{{url_for('tabs')}}">Tabs</a></li>
+			{% endif %}
+			{% if current_page=='About Me' %}
+				<li><a class="active" href="{{url_for('about_me')}}">About Me</a></li>
+			{% else %}
+				<li><a href="{{url_for('about_me')}}">About Me</a></li>
+			{% endif %}
+        </ul>
+	{% block content %}
+	{% endblock %}
+    </body>
+</html>

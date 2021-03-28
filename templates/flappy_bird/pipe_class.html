@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Pipe Class</title>
+        <style>
+            {
+                box-sizing: border-box;
+            }
+            h1 {
+                font-size: 50px;
+            }
+            body {
+                margin: 0;
+                font-size: 100%;
+            }
+            .center {
+                text-align: center;
+                color: white;
+            }
+            .column {
+                float: left;
+                color: white;
+            }
+            .left {
+                width: 33.33%;
+            }
+            .middle {
+                width: 33.33%;
+            }
+            .right {
+                width: 33.34%;
+            }
+            .row: after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+        ul {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background-color: #444;
+            height: 100%;
+            overflow: auto;
+        }
+        li {
+            float: left;
+        }
+        #nav li a {
+            display: block;
+            color: #000;
+            padding: 12px 14px;
+            text-decoration: none;
+        }
+        
+        #nav li a.active {
+            background-color: #808080;
+            color: white;
+        }
+        
+        #nav li a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
+        #links a:link, a:visited {
+                background-color: #000;
+                color: white;
+                padding: 15px 25px;
+                text-align: center;
+                text-decoration: none;
+                dislay: inline-block;
+            }
+        #links a:hover, a:active {
+            background-color: grey;
+        }
+        </style>
+    </head>
+    
+    <body style="background-color: grey">
+        <ul id="nav">
+            <li><a href="{{url_for('home_page')}}">Main</a></li>
+            <li><a class="active" href="{{url_for('projects')}}">Projects</a></li>
+            <li><a href="{{url_for('my_music')}}">My Music</a></li>
+            <li><a href="{{url_for('tabs')}}">Tabs</a></li>
+            <li><a href="{{url_for('about_me')}}">About Me</a></li>
+        </ul>
+        
+        <h1 class="center">
+            Pipe Class
+        </h1>
+        
+        <h3 class="center">
+            Made by Kyle Hurd
+            <hr>
+        </h3>
+        
+        <div>
+            <div>
+                <!-- HTML generated using hilite.me -->
+                <div style="background: #111111; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-style: italic; background-color: #0f140f"></span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Pipes.cpp</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Flappy Bird</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Created by Abdul Aziz Al-Dalaan and Kyle Hurd on 11/16/20.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Copyright © 2020 Kyle Hurd. All rights reserved.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Description</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Within the Pipe namespace there is a struct defenition and class declaration.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  The Pipe struct contains three RectangleShape objects representing the top,</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  bottom, and space between the two pipes. The &#39;hole&#39; is desgined to be the</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  safe zone for the bird. If the perimeter of the bird exceeds this safe zone</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  then the player loses the game.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &quot;Pipes.hpp&quot;</span>
+
+                <span style="color: #fb660a; font-weight: bold">namespace</span> <span style="color: #ffffff">Pipe</span> <span style="color: #ffffff">{</span>
+
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">/* *</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *  Created by:  Kyle Hurd and Abdul Aziz Al-Dalaan</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *  Modified:    11/28/2020</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *  Description: Initializer for the class. Sets private variables</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *               for velocity, numPipes, width, and sizeofHole.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *               After these intializations, it calls a function</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *               initPipes() to create the rest of the objects.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> */</span>
+                <span style="color: #ffffff">PipesSprite::PipesSprite(</span><span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">w,</span> <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">s)</span> <span style="color: #ffffff">:</span>
+                    <span style="color: #ffffff">velocity(-</span><span style="color: #0086f7; font-weight: bold">2.0</span> <span style="color: #ffffff">,</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">),</span> <span style="color: #ffffff">numPipes(</span><span style="color: #0086f7; font-weight: bold">2</span><span style="color: #ffffff">),</span>
+                        <span style="color: #ffffff">width(w),</span> <span style="color: #ffffff">sizeofHole(s),</span> <span style="color: #ffffff">holeSize(w,</span> <span style="color: #ffffff">s)</span> <span style="color: #ffffff">{</span>
+                    <span style="color: #ffffff">initPipes();</span>
+                <span style="color: #ffffff">}</span>
+
+                <span style="color: #ffffff">PipesSprite::~PipesSprite()</span> <span style="color: #ffffff">{}</span>
+
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">/* *</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *  Created by:  Kyle Hurd and Abdul Aziz Al-Dalaan</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *  Modified:    11/28/2020</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *  Description: Randomizes the location of the hole for each</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *               pipe and places them on the window starting</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *               from the middle to an offset of 600 pixels apart</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *               for each pipe. A texture is also added to the top</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *               and bottom pipe. &#39;hole&#39; is transparent.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> */</span>
+                <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ffffff">PipesSprite::initPipes()</span> <span style="color: #ffffff">{</span>
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Initial Offset for pipe</span>
+                    <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">offset</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">int</span><span style="color: #ffffff">)</span> <span style="color: #ffffff">WIDTH</span> <span style="color: #ffffff">/</span> <span style="color: #0086f7; font-weight: bold">2</span><span style="color: #ffffff">;</span>
+                    
+                    <span style="color: #fb660a; font-weight: bold">for</span> <span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">i</span> <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">;</span> <span style="color: #ffffff">i</span> <span style="color: #ffffff">&lt;</span> <span style="color: #ffffff">numPipes;</span> <span style="color: #ffffff">i++)</span> <span style="color: #ffffff">{</span>
+                        
+                        <span style="color: #008800; font-style: italic; background-color: #0f140f">// Temp Vector to Modify Vector Components for Each Pipe</span>
+                        <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">temp(width,</span> <span style="color: #ffffff">sizeofHole);</span>
+                        
+                        <span style="color: #008800; font-style: italic; background-color: #0f140f">// Setting the Size</span>
+                        <span style="color: #ffffff">PipeList[i].hole.setSize(temp);</span>
+                        <span style="color: #ffffff">temp.y</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">rand()</span> <span style="color: #ffffff">%</span> <span style="color: #0086f7; font-weight: bold">451</span> <span style="color: #ffffff">+</span> <span style="color: #0086f7; font-weight: bold">100</span><span style="color: #ffffff">;</span>
+                        <span style="color: #ffffff">PipeList[i].top.setSize(temp);</span>
+                        <span style="color: #ffffff">temp.y</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">HEIGHT</span> <span style="color: #ffffff">-</span> <span style="color: #ffffff">PipeList[i].top.getSize().y</span> <span style="color: #ffffff">-</span> <span style="color: #ffffff">PipeList[i].hole.getSize().y;</span>
+                        <span style="color: #ffffff">PipeList[i].bottom.setSize(temp);</span>
+
+                        <span style="color: #008800; font-style: italic; background-color: #0f140f">// Setting the Position</span>
+                        <span style="color: #ffffff">temp.x</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">offset;</span>
+                        <span style="color: #ffffff">temp.y</span> <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">;</span>
+                        <span style="color: #ffffff">PipeList[i].top.setPosition(temp);</span>
+                        <span style="color: #ffffff">temp.y</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">PipeList[i].top.getSize().y;</span>
+                        <span style="color: #ffffff">PipeList[i].hole.setPosition(temp);</span>
+                        <span style="color: #ffffff">temp.y</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">HEIGHT</span> <span style="color: #ffffff">-</span> <span style="color: #ffffff">PipeList[i].bottom.getSize().y;</span>
+                        <span style="color: #ffffff">PipeList[i].bottom.setPosition(temp);</span>
+
+                        <span style="color: #008800; font-style: italic; background-color: #0f140f">/* Setting pipe colors (could later include a texture) */</span>
+                        <span style="color: #ffffff">texture.loadFromFile(</span><span style="color: #0086d2">&quot;Resources/Sprites/Pipes.png&quot;</span><span style="color: #ffffff">);</span>
+                        <span style="color: #ffffff">PipeList[i].hole.setFillColor(sf::Color::Transparent);</span>
+                        <span style="color: #ffffff">PipeList[i].top.setTexture(&amp;texture);</span>
+                        <span style="color: #ffffff">PipeList[i].bottom.setTexture(&amp;texture);</span>
+
+                        <span style="color: #ffffff">offset</span> <span style="color: #ffffff">+=</span> <span style="color: #0086f7; font-weight: bold">600</span><span style="color: #ffffff">;</span> <span style="color: #008800; font-style: italic; background-color: #0f140f">// increments for the distance of the next pipe</span>
+                    <span style="color: #ffffff">}</span>
+                <span style="color: #ffffff">}</span>
+
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">/* *</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *  Created by:  Kyle Hurd and Abdul Aziz Al-Dalaan</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *  Modified:    11/28/2020</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *  Description: Moves each pipe in a direction specified by the</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *               velocity vector.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> */</span>
+                <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ffffff">PipesSprite::updatePipes()</span> <span style="color: #ffffff">{</span>
+                    <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(currentState</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">RUN)</span> <span style="color: #ffffff">{</span>
+                        <span style="color: #fb660a; font-weight: bold">for</span> <span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">i</span> <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">;</span> <span style="color: #ffffff">i</span> <span style="color: #ffffff">&lt;</span> <span style="color: #ffffff">numPipes;</span> <span style="color: #ffffff">i++)</span> <span style="color: #ffffff">{</span>
+                            <span style="color: #ffffff">PipeList[i].top.move(velocity);</span>
+                            <span style="color: #ffffff">PipeList[i].hole.move(velocity);</span>
+                            <span style="color: #ffffff">PipeList[i].bottom.move(velocity);</span>
+                        <span style="color: #ffffff">}</span>
+                    <span style="color: #ffffff">}</span>
+                <span style="color: #ffffff">}</span>
+
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">/* *</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *  Created by:  Kyle Hurd and Abdul Aziz Al-Dalaan</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *  Modified:    11/28/2020</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *  Description: Sets each pipe movement to zero. This code is irrelevant</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *               to our project and was not used as we can simply not call</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *               the function updatePipes() and the same effect will occur.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> */</span>
+                <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ffffff">PipesSprite::stopPipes()</span> <span style="color: #ffffff">{</span> <span style="color: #008800; font-style: italic; background-color: #0f140f">// Irrelevant?</span>
+                    <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(currentState</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">LOSE)</span> <span style="color: #ffffff">{</span>
+                        <span style="color: #fb660a; font-weight: bold">for</span> <span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">i</span> <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">;</span> <span style="color: #ffffff">i</span> <span style="color: #ffffff">&lt;</span> <span style="color: #ffffff">numPipes;</span> <span style="color: #ffffff">i++)</span> <span style="color: #ffffff">{</span>
+                            <span style="color: #ffffff">PipeList[i].top.move(</span><span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">,</span><span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">);</span>
+                            <span style="color: #ffffff">PipeList[i].hole.move(</span><span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">,</span><span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">);</span>
+                            <span style="color: #ffffff">PipeList[i].bottom.move(</span><span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">,</span><span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">);</span>
+                        <span style="color: #ffffff">}</span>
+                    <span style="color: #ffffff">}</span>
+                <span style="color: #ffffff">}</span>
+
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">// **GETTERS** //</span>
+                <span style="color: #ffffff">sf::RectangleShape</span> <span style="color: #ffffff">PipesSprite::getTop(</span><span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">i)</span> <span style="color: #ffffff">{</span>
+                    <span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">PipeList[i].top;</span>
+                <span style="color: #ffffff">}</span>
+
+                <span style="color: #ffffff">sf::RectangleShape</span> <span style="color: #ffffff">PipesSprite::getHole(</span><span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">i)</span> <span style="color: #ffffff">{</span>
+                    <span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">PipeList[i].hole;</span>
+                <span style="color: #ffffff">}</span>
+
+                <span style="color: #ffffff">sf::RectangleShape</span> <span style="color: #ffffff">PipesSprite::getBottom(</span><span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">i)</span> <span style="color: #ffffff">{</span>
+                    <span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">PipeList[i].bottom;</span>
+                <span style="color: #ffffff">}</span>
+
+                <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">PipesSprite::getPosition(</span><span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">i)</span> <span style="color: #ffffff">{</span>
+                    <span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">PipeList[i].top.getPosition();</span>
+                <span style="color: #ffffff">}</span>
+
+                <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">PipesSprite::getHolePosition(</span><span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">i)</span> <span style="color: #ffffff">{</span> <span style="color: #008800; font-style: italic; background-color: #0f140f">// pass in nearest pipe index either 0 or 1</span>
+                    <span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">PipeList[i].hole.getPosition();</span>
+                <span style="color: #ffffff">}</span>
+
+                <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">PipesSprite::getHoleSize()</span> <span style="color: #ffffff">{</span>
+                    <span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">holeSize;</span>
+                <span style="color: #ffffff">}</span>
+
+                <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">PipesSprite::getNumPipes()</span> <span style="color: #ffffff">{</span>
+                    <span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">numPipes;</span>
+                <span style="color: #ffffff">}</span>
+
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">/* *</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *  Created by:  Kyle Hurd and Abdul Aziz Al-Dalaan</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *  Modified:    11/28/2020</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *  Description: Changes the location of the hole between the top and</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *               bottom pipe. After updating the location of the hole,</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *               the pipe is placed in the back of the line where it will</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> *               wait to move back into the window. Or not.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f"> */</span>
+                <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ffffff">PipesSprite::randPipe(</span><span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">i)</span> <span style="color: #ffffff">{</span>
+
+                    <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">nextXposition</span> <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">;</span>
+                    <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">temp(width,</span> <span style="color: #ffffff">rand()</span> <span style="color: #ffffff">%</span> <span style="color: #0086f7; font-weight: bold">451</span> <span style="color: #ffffff">+</span> <span style="color: #0086f7; font-weight: bold">100</span><span style="color: #ffffff">);</span>
+                    
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Set Size of top and bottom pipe.</span>
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Hole is a constant, does not need changed</span>
+                    <span style="color: #ffffff">PipeList[i].top.setSize(temp);</span>
+                    <span style="color: #ffffff">temp.y</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">HEIGHT</span> <span style="color: #ffffff">-</span> <span style="color: #ffffff">sizeofHole</span> <span style="color: #ffffff">-</span> <span style="color: #ffffff">PipeList[i].top.getSize().y;</span>
+                    <span style="color: #ffffff">PipeList[i].bottom.setSize(temp);</span>
+
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Updating the next x position</span>
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Grab the position of next pipe and add an offset of 3/4 the width</span>
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// nextXposition++;</span>
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// nextXposition = (nextXposition &amp; 1) + 600;</span>
+                    <span style="color: #ffffff">nextXposition</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">(i</span> <span style="color: #ffffff">!=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">)</span> <span style="color: #ffffff">?</span> <span style="color: #ffffff">(PipeList[i</span> <span style="color: #ffffff">-</span> <span style="color: #0086f7; font-weight: bold">1</span><span style="color: #ffffff">].top.getPosition().x)</span> <span style="color: #ffffff">:</span>
+                                                <span style="color: #ffffff">(PipeList[numPipes</span> <span style="color: #ffffff">-</span> <span style="color: #0086f7; font-weight: bold">1</span><span style="color: #ffffff">].top.getPosition().x);</span>
+                    
+                    <span style="color: #ffffff">nextXposition</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">nextXposition</span> <span style="color: #ffffff">+</span> <span style="color: #0086f7; font-weight: bold">600</span><span style="color: #ffffff">;</span>
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Set Position of top, bottom, and hole</span>
+                    <span style="color: #ffffff">temp.x</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">nextXposition;</span> <span style="color: #ffffff">temp.y</span> <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">;</span>
+                    <span style="color: #ffffff">PipeList[i].top.setPosition(temp);</span>
+                    <span style="color: #ffffff">temp.y</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">PipeList[i].top.getSize().y;</span>
+                    <span style="color: #ffffff">PipeList[i].hole.setPosition(temp);</span>
+                    <span style="color: #ffffff">temp.y</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">HEIGHT</span> <span style="color: #ffffff">-</span> <span style="color: #ffffff">PipeList[i].bottom.getSize().y;</span>
+                    <span style="color: #ffffff">PipeList[i].bottom.setPosition(temp);</span>
+                <span style="color: #ffffff">}</span>
+                <span style="color: #ffffff">}</span>
+                </pre></div>
+
+
+            </div>
+            <br><br>
+            <div>
+                <!-- HTML generated using hilite.me -->
+                <div style="background: #111111; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-style: italic; background-color: #0f140f"></span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Pipes.hpp</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Flappy Bird</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Created by Abdul Aziz Al-Dalaan and Kyle Hurd on 11/16/20.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Copyright © 2020 Kyle Hurd. All rights reserved.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Description</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Within the Pipe namespace there is a struct defenition and class declaration.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  The Pipe struct contains three RectangleShape objects representing the top,</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  bottom, and space between the two pipes. The &#39;hole&#39; is desgined to be the</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  safe zone for the bird. If the perimeter of the bird exceeds this safe zone</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  then the player loses the game.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#ifndef Pipes_hpp</span>
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#define Pipes_hpp</span>
+
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &lt;iostream&gt;</span>
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &quot;helperFunctions.hpp&quot;</span>
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &lt;random&gt;</span>
+
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &lt;SFML/Graphics.hpp&gt;</span>
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &lt;SFML/Audio.hpp&gt;</span>
+
+                <span style="color: #fb660a; font-weight: bold">namespace</span> <span style="color: #ffffff">Pipe</span> <span style="color: #ffffff">{</span>
+
+                <span style="color: #fb660a; font-weight: bold">struct</span> <span style="color: #ffffff">Pipe</span> <span style="color: #ffffff">{</span>
+                    <span style="color: #ffffff">sf::RectangleShape</span> <span style="color: #ffffff">top;</span>
+                    <span style="color: #ffffff">sf::RectangleShape</span> <span style="color: #ffffff">bottom;</span>
+                    <span style="color: #ffffff">sf::RectangleShape</span> <span style="color: #ffffff">hole;</span>
+                <span style="color: #ffffff">};</span>
+
+                <span style="color: #fb660a; font-weight: bold">class</span> <span style="color: #ffffff">PipesSprite</span> <span style="color: #ffffff">{</span>
+                <span style="color: #ffffff">private:</span>
+                    <span style="color: #fb660a; font-weight: bold">const</span> <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">numPipes;</span>
+                    <span style="color: #fb660a; font-weight: bold">const</span> <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">width;</span>
+                    <span style="color: #fb660a; font-weight: bold">const</span> <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">sizeofHole;</span>
+                    <span style="color: #ffffff">Pipe</span> <span style="color: #ffffff">PipeList[</span><span style="color: #0086f7; font-weight: bold">2</span><span style="color: #ffffff">];</span>
+                    
+                    <span style="color: #fb660a; font-weight: bold">const</span> <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">velocity;</span>
+                    <span style="color: #fb660a; font-weight: bold">const</span> <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">holeSize;</span>
+                    
+                    <span style="color: #ffffff">sf::Texture</span> <span style="color: #ffffff">texture;</span>
+                    
+                <span style="color: #ffffff">public:</span>
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Constructor</span>
+                    <span style="color: #ffffff">PipesSprite(</span><span style="color: #cdcaa9; font-weight: bold">int</span><span style="color: #ffffff">,</span><span style="color: #cdcaa9; font-weight: bold">int</span><span style="color: #ffffff">);</span>
+                    <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">initPipes</span><span style="color: #ffffff">();</span>
+                    
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Destructor</span>
+                    <span style="color: #ffffff">~PipesSprite();</span>
+                    
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Functions</span>
+                    <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">updatePipes</span><span style="color: #ffffff">();</span>
+                    <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">randPipe</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">i);</span>
+                    <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">stopPipes</span><span style="color: #ffffff">();</span>
+                    <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">getHolePosition(</span><span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">i);</span>
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// getSize();</span>
+
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Getters</span>
+                    <span style="color: #ffffff">sf::RectangleShape</span> <span style="color: #ffffff">getTop(</span><span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">i);</span>
+                    <span style="color: #ffffff">sf::RectangleShape</span> <span style="color: #ffffff">getHole(</span><span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">i);</span>
+                    <span style="color: #ffffff">sf::RectangleShape</span> <span style="color: #ffffff">getBottom(</span><span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">i);</span>
+
+                    <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">getPosition(</span><span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">i);</span>
+                    <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">getHoleSize();</span>
+
+                    <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ff0086; font-weight: bold">getNumPipes</span><span style="color: #ffffff">();</span>
+                <span style="color: #ffffff">};</span>
+                <span style="color: #ffffff">}</span>
+
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#endif </span><span style="color: #008800; font-style: italic; background-color: #0f140f">/* Pipes_hpp */</span><span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f"></span>
+                </pre></div>
+            </div>
+        </div>
+    </body>
+</html>

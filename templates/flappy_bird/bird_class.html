@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bird Class</title>
+        <style>
+            {
+                box-sizing: border-box;
+            }
+            h1 {
+                font-size: 50px;
+            }
+            body {
+                margin: 0;
+                font-size: 100%;
+            }
+            .center {
+                text-align: center;
+                color: white;
+            }
+            .column {
+                float: left;
+                color: white;
+            }
+            .left {
+                width: 33.33%;
+            }
+            .middle {
+                width: 33.33%;
+            }
+            .right {
+                width: 33.34%;
+            }
+            .row: after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+        ul {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background-color: #444;
+            height: 100%;
+            overflow: auto;
+        }
+        li {
+            float: left;
+        }
+        #nav li a {
+            display: block;
+            color: #000;
+            padding: 12px 14px;
+            text-decoration: none;
+        }
+        
+        #nav li a.active {
+            background-color: #808080;
+            color: white;
+        }
+        
+        #nav li a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
+        #links a:link, a:visited {
+                background-color: #000;
+                color: white;
+                padding: 15px 25px;
+                text-align: center;
+                text-decoration: none;
+                dislay: inline-block;
+            }
+        #links a:hover, a:active {
+            background-color: grey;
+        }
+        </style>
+    </head>
+    
+    <body style="background-color: grey">
+        <ul id="nav">
+            <li><a href="{{url_for('home_page')}}">Main</a></li>
+            <li><a class="active" href="{{url_for('projects')}}">Projects</a></li>
+            <li><a href="{{url_for('my_music')}}">My Music</a></li>
+            <li><a href="{{url_for('tabs')}}">Tabs</a></li>
+            <li><a href="{{url_for('about_me')}}">About Me</a></li>
+        </ul>
+        
+        <h1 class="center">
+            Bird Class
+        </h1>
+        
+        <h3 class="center">
+            Made by Kyle Hurd
+            <hr>
+        </h3>
+        
+        <div>
+            <div>
+                <!-- HTML generated using hilite.me -->
+                <div style="background: #111111; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-style: italic; background-color: #0f140f"></span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Bird.cpp</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  SFMLProject</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Created by Kyle Hurd on 11/15/20.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Copyright © 2020 Kyle Hurd. All rights reserved.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Description</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Within the namespace Bird is a class BirdSprite. This class contains</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  sounds for the object and any functionality that may be needed for the</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  game to run (ex. jumping and falling)</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &quot;Bird.hpp&quot;</span>
+
+                <span style="color: #fb660a; font-weight: bold">namespace</span> <span style="color: #ffffff">Bird</span> <span style="color: #ffffff">{</span>
+
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">/* *</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Created by:  Kyle Hurd</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Modified:    11/28/2020</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Description: Initializer for BirdSprite class. Parameters are the</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               objects texture and the initial position of object,</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               which have default values of x = y = 0. Object has its</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               own gravity and velocity. Gravity is constant and velocity</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               has a constant upward force for the jump. Also loads in</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               a sound for the bird&#39;s flap and collision.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     */</span>
+                    <span style="color: #ffffff">BirdSprite::BirdSprite(</span><span style="color: #fb660a; font-weight: bold">const</span> <span style="color: #ffffff">sf::Texture</span> <span style="color: #ffffff">&amp;pTexture,</span> <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">x,</span> <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">y)</span> <span style="color: #ffffff">:</span>
+                        <span style="color: #ffffff">object(pTexture),</span> <span style="color: #ffffff">position(x,</span> <span style="color: #ffffff">y),</span>
+                            <span style="color: #ffffff">gravity(</span><span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">,</span> <span style="color: #0086f7; font-weight: bold">1</span><span style="color: #ffffff">),</span> <span style="color: #ffffff">velocity(</span><span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">,</span> <span style="color: #ffffff">-</span><span style="color: #0086f7; font-weight: bold">15</span><span style="color: #ffffff">)</span> <span style="color: #ffffff">{</span>
+                                <span style="color: #ffffff">object.setPosition(position.x,</span> <span style="color: #ffffff">position.y);</span>
+                                <span style="color: #ffffff">currentState</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">LOSE;</span>
+                                <span style="color: #ffffff">object.setScale(</span><span style="color: #0086f7; font-weight: bold">0.30</span><span style="color: #ffffff">,</span> <span style="color: #0086f7; font-weight: bold">0.30</span><span style="color: #ffffff">);</span>
+                                <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(!bufferFlap.loadFromFile(</span><span style="color: #0086d2">&quot;Resources/Sounds/BirdFlap.wav&quot;</span><span style="color: #ffffff">))</span> <span style="color: #ffffff">{</span>
+                                    <span style="color: #ffffff">print(</span><span style="color: #0086d2">&quot;Could not open BirdFlap.wav&quot;</span><span style="color: #ffffff">);</span>
+                                <span style="color: #ffffff">}</span>
+                                <span style="color: #ffffff">flap.setBuffer(bufferFlap);</span>
+                                <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(!bufferStrike.loadFromFile(</span><span style="color: #0086d2">&quot;Resources/Sounds/BirdStrike.wav&quot;</span><span style="color: #ffffff">))</span> <span style="color: #ffffff">{</span>
+                                    <span style="color: #ffffff">print(</span><span style="color: #0086d2">&quot;Could not open BirdStrike.wav&quot;</span><span style="color: #ffffff">);</span>
+                                <span style="color: #ffffff">}</span>
+                                <span style="color: #ffffff">strike.setBuffer(bufferStrike);</span>
+                            <span style="color: #ffffff">}</span>
+
+                    <span style="color: #ffffff">BirdSprite::~BirdSprite()</span> <span style="color: #ffffff">{}</span>
+
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">/* *</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Created by:  Kyle Hurd</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Modified:    11/28/2020</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Description: Reinitializes the velocity back to its original</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               value and moves object at that velocity. Also</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               calls for the flapping sound effect to play.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               This function is state dependent. The currentState</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               is a global function located in the helperFunctions file.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               It is important to note that this function will update</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               the state from LOSE to RUN automatically. There is no</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               need to update the state when starting the game.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     */</span>
+                    <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ffffff">BirdSprite::jump()</span> <span style="color: #ffffff">{</span>
+                        <span style="color: #008800; font-style: italic; background-color: #0f140f">// Resetting Velocity</span>
+                        <span style="color: #fb660a; font-weight: bold">switch</span> <span style="color: #ffffff">(currentState)</span> <span style="color: #ffffff">{</span>
+                            <span style="color: #fb660a; font-weight: bold">case</span> <span style="color: #ffffff">LOSE</span>:
+                                <span style="color: #ffffff">currentState</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">RUN;</span>
+                            <span style="color: #fb660a; font-weight: bold">case</span> <span style="color: #ffffff">RUN</span>:
+                                <span style="color: #ffffff">velocity.y</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">-</span><span style="color: #0086f7; font-weight: bold">18</span><span style="color: #ffffff">;</span>
+                                <span style="color: #ffffff">object.move(velocity.x,</span> <span style="color: #ffffff">velocity.y);</span>
+                                <span style="color: #ffffff">flap.play();</span>
+                                <span style="color: #fb660a; font-weight: bold">break</span><span style="color: #ffffff">;</span>
+                            <span style="color: #ffffff">default:</span> <span style="color: #008800; font-style: italic; background-color: #0f140f">// Bug, state should only be LOSE or RUN when jump() is called.</span>
+                                <span style="color: #ffffff">print(</span><span style="color: #0086d2">&quot;BirdSprite::jump() default case was called.\n&quot;</span>
+                                      <span style="color: #0086d2">&quot;jump() must only be called when in the LOSE or RUN state.&quot;</span><span style="color: #ffffff">);</span>
+                                <span style="color: #fb660a; font-weight: bold">break</span><span style="color: #ffffff">;</span>
+                        <span style="color: #ffffff">}</span>
+                    <span style="color: #ffffff">}</span>
+
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">/* *</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Created by:  Kyle Hurd</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Modified:    11/28/2020</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Description: As long as the bird object is above the maximum height limit,</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               fall() will increase the objects velocity by adding the gravity</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               constant to it. This is found in the first &#39;if&#39; statement. The</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               proceeding else-if detects if the bird struck the ground (the</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               maximum HEIGHT limit).</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               For any external detections, like a collision</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               with a pipe, fall() will check if the bird was relocated to its origin</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               and if another function updated the state to LOSE and prevent the velocity</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               from being altered.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     */</span>
+                    <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ffffff">BirdSprite::fall()</span> <span style="color: #ffffff">{</span>
+                        
+                        <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">((object.getPosition().y</span> <span style="color: #ffffff">&lt;</span> <span style="color: #ffffff">-</span><span style="color: #0086f7; font-weight: bold">100</span><span style="color: #ffffff">)</span> <span style="color: #ffffff">&amp;&amp;</span> <span style="color: #ffffff">currentState</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">RUN)</span> <span style="color: #ffffff">{</span>
+                            <span style="color: #ffffff">object.setPosition(position.x,</span> <span style="color: #ffffff">position.y);</span>
+                            <span style="color: #ffffff">strike.play();</span>
+                            <span style="color: #ffffff">currentState</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">LOSE;</span>
+                            <span style="color: #ffffff">print(</span><span style="color: #0086d2">&quot;The bird flew too high.\nGoodbye sweet bird.&quot;</span><span style="color: #ffffff">);</span>
+                        <span style="color: #ffffff">}</span>
+                        <span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">((object.getPosition().y</span> <span style="color: #ffffff">&lt;</span> <span style="color: #ffffff">HEIGHT)</span> <span style="color: #ffffff">&amp;&amp;</span> <span style="color: #ffffff">currentState</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">RUN)</span> <span style="color: #ffffff">{</span>
+                            <span style="color: #ffffff">velocity.y</span> <span style="color: #ffffff">+=</span> <span style="color: #ffffff">gravity.y;</span>
+                            <span style="color: #ffffff">object.move(velocity.x,</span> <span style="color: #ffffff">velocity.y);</span>
+                        <span style="color: #ffffff">}</span>
+                        <span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">((object.getPosition().y</span> <span style="color: #ffffff">&gt;=</span> <span style="color: #ffffff">HEIGHT)</span> <span style="color: #ffffff">&amp;&amp;</span> <span style="color: #ffffff">currentState</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">RUN)</span> <span style="color: #ffffff">{</span>
+                            <span style="color: #ffffff">object.setPosition(position.x,</span> <span style="color: #ffffff">position.y);</span>
+                            <span style="color: #ffffff">strike.play();</span>
+                            <span style="color: #ffffff">currentState</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">LOSE;</span>
+                            <span style="color: #ffffff">print(</span><span style="color: #0086d2">&quot;Player hit the ground\nPlayer lost.&quot;</span><span style="color: #ffffff">);</span>
+                        <span style="color: #ffffff">}</span>
+                        <span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">((currentState</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">LOSE)</span> <span style="color: #ffffff">&amp;&amp;</span> <span style="color: #ffffff">!(object.getPosition()</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">position))</span> <span style="color: #ffffff">{</span>
+                            <span style="color: #ffffff">object.setPosition(position.x,</span> <span style="color: #ffffff">position.y);</span>
+                            <span style="color: #ffffff">strike.play();</span>
+                            <span style="color: #ffffff">print(</span><span style="color: #0086d2">&quot;Player hit pipe\nPlayer lost.&quot;</span><span style="color: #ffffff">);</span>
+                        <span style="color: #ffffff">}</span>
+                    <span style="color: #ffffff">}</span>
+                    
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">/* *</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Created by:  Kyle Hurd</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Modified:    11/28/2020</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Description: Changes the birds origin from the top left corner to the</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               very center of the object.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     */</span>
+                    <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ffffff">BirdSprite::centerOrigin()</span> <span style="color: #ffffff">{</span>
+                        <span style="color: #ffffff">object.setOrigin(object.getLocalBounds().left</span> <span style="color: #ffffff">+</span>
+                                                   <span style="color: #ffffff">object.getLocalBounds().width</span> <span style="color: #ffffff">/</span> <span style="color: #0086f7; font-weight: bold">2</span><span style="color: #ffffff">,</span>
+                                                   <span style="color: #ffffff">object.getLocalBounds().top</span> <span style="color: #ffffff">+</span>
+                                                   <span style="color: #ffffff">object.getLocalBounds().height</span> <span style="color: #ffffff">/</span> <span style="color: #0086f7; font-weight: bold">2</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">}</span>
+
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// **Getters and Setters** //</span>
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">/* *</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">    *  Created by:  Kyle Hurd</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">    *  Modified:    11/28/2020</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">    *  Description: A setter for a private member of the Sprite() class created</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">    *               by SFML.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">    */</span>
+                    <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ffffff">BirdSprite::move(</span><span style="color: #fb660a; font-weight: bold">const</span> <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">&amp;v)</span> <span style="color: #ffffff">{</span>
+                        <span style="color: #ffffff">object.move(v);</span>
+                    <span style="color: #ffffff">}</span>
+
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// **Getters and Setters** //</span>
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">/* *</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Created by:  Kyle Hurd</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Modified:    11/28/2020</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Description: Sets a new scale for the object (the bird). Note that this function</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               is scaling the current size of the object, not the original size.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     */</span>
+                    <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ffffff">BirdSprite::setScale(</span><span style="color: #cdcaa9; font-weight: bold">float</span> <span style="color: #ffffff">s)</span> <span style="color: #ffffff">{</span>
+                        <span style="color: #ffffff">object.scale(s,</span> <span style="color: #ffffff">s);</span>
+                    <span style="color: #ffffff">}</span>
+                    
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">/* *</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Created by:  Kyle Hurd</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Modified:    11/28/2020</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Description: Sets the position based on the origin of the object. There is only one</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               function for this and no variants, so you must pass in a sf::Vector2f type.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     */</span>
+                    <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ffffff">BirdSprite::setPosition(</span><span style="color: #fb660a; font-weight: bold">const</span> <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">&amp;position)</span> <span style="color: #ffffff">{</span>
+                        <span style="color: #ffffff">object.setPosition(position);</span>
+                    <span style="color: #ffffff">}</span>
+
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">/* *</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Created by:  Kyle Hurd</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Modified:    11/28/2020</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Description: Returns the top position of the object. This a global bounds and not</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               a local, so it is the top position in relation to the window, not itself.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     */</span>
+                    <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">BirdSprite::getTopPosition()</span> <span style="color: #ffffff">{</span>
+                        <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">temp(object.getPosition().x,</span> <span style="color: #ffffff">object.getGlobalBounds().top);</span>
+                        <span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">temp;</span>
+                    <span style="color: #ffffff">}</span>
+
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">/* *</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Created by:  Kyle Hurd</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Modifed:     11/28/2020</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Description: Returns the right position of the object. This a global bounds and not</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               a local, so it is the right position in relation to the window, not itself.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     */</span>
+                    <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">BirdSprite::getRightPosition()</span> <span style="color: #ffffff">{</span>
+                        <span style="color: #cdcaa9; font-weight: bold">float</span> <span style="color: #ffffff">x</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">object.getPosition().x</span> <span style="color: #ffffff">-</span> <span style="color: #ffffff">object.getGlobalBounds().left;</span>
+                        <span style="color: #ffffff">x</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">object.getPosition().x</span> <span style="color: #ffffff">+</span> <span style="color: #ffffff">x;</span>
+                        <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">temp(x,</span> <span style="color: #ffffff">object.getPosition().y);</span>
+                        <span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">temp;</span>
+                    <span style="color: #ffffff">}</span>
+
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">/* *</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Created by:  Kyle Hurd</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Modified:    11/28/2020</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Description: Returns the dimensions of the object. This function is a local bounds,</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               meaning it returns the width (x position) and height (y position) in</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *               relation to itself.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     */</span>
+                    <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">BirdSprite::getSizeofBird()</span> <span style="color: #ffffff">{</span>
+                        <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">temp(object.getLocalBounds().width,</span> <span style="color: #ffffff">object.getLocalBounds().height);</span>
+                        <span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">temp;</span>
+                    <span style="color: #ffffff">}</span>
+
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">/* *</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Created by:  Kyle Hurd</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Modified:    11/28/2020</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Description: Returns the current position of the object.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     */</span>
+                    <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">BirdSprite::getPosition()</span> <span style="color: #ffffff">{</span>
+                        <span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">object.getPosition();</span>
+                    <span style="color: #ffffff">}</span>
+
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">/* *</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Created by:  Kyle Hurd</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Modified:    11/28/2020</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     *  Description: Returns the object sprite (the bird).</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">     */</span>
+                    <span style="color: #ffffff">sf::Sprite</span> <span style="color: #ffffff">BirdSprite::getSprite()</span> <span style="color: #ffffff">{</span>
+                        <span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">object;</span>
+                    <span style="color: #ffffff">}</span>
+                <span style="color: #ffffff">}</span>
+                </pre></div>
+
+
+            </div>
+            <br><br>
+            <div>
+                <!-- HTML generated using hilite.me -->
+                <div style="background: #111111; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-style: italic; background-color: #0f140f"></span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Bird.hpp</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  SFMLProject</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Created by Kyle Hurd on 11/15/20.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Copyright © 2020 Kyle Hurd. All rights reserved.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Description</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Within the namespace Bird is a class BirdSprite. This class contains</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  sounds for the object and any functionality that may be needed for the</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  game to run (ex. jumping and falling)</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#ifndef Bird_hpp</span>
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#define Bird_hpp</span>
+
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &lt;iostream&gt;</span>
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &lt;SFML/Graphics.hpp&gt;</span>
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &lt;SFML/Audio.hpp&gt;</span>
+
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &quot;helperFunctions.hpp&quot;</span>
+
+                <span style="color: #fb660a; font-weight: bold">namespace</span> <span style="color: #ffffff">Bird</span> <span style="color: #ffffff">{</span>
+
+                    <span style="color: #fb660a; font-weight: bold">class</span> <span style="color: #ffffff">BirdSprite</span> <span style="color: #ffffff">{</span>
+                    <span style="color: #ffffff">private:</span>
+                        <span style="color: #fb660a; font-weight: bold">const</span> <span style="color: #ffffff">sf::Vector2i</span>  <span style="color: #ffffff">gravity;</span>
+                        <span style="color: #ffffff">sf::Vector2i</span>        <span style="color: #ffffff">velocity;</span> <span style="color: #008800; font-style: italic; background-color: #0f140f">// (x,y)</span>
+                        <span style="color: #ffffff">sf::Sprite</span>          <span style="color: #ffffff">object;</span>
+                        <span style="color: #fb660a; font-weight: bold">const</span> <span style="color: #ffffff">sf::Vector2f</span>  <span style="color: #ffffff">position;</span>
+                        <span style="color: #ffffff">sf::SoundBuffer</span>     <span style="color: #ffffff">bufferFlap;</span>
+                        <span style="color: #ffffff">sf::SoundBuffer</span>     <span style="color: #ffffff">bufferStrike;</span>
+                        <span style="color: #ffffff">sf::Sound</span>           <span style="color: #ffffff">flap;</span>
+                        <span style="color: #ffffff">sf::Sound</span>           <span style="color: #ffffff">strike;</span>
+                        
+                    <span style="color: #ffffff">public:</span>
+                        <span style="color: #008800; font-style: italic; background-color: #0f140f">// Constructor</span>
+                        <span style="color: #ffffff">BirdSprite(</span><span style="color: #fb660a; font-weight: bold">const</span> <span style="color: #ffffff">sf::Texture</span> <span style="color: #ffffff">&amp;,</span> <span style="color: #cdcaa9; font-weight: bold">int</span><span style="color: #ffffff">=</span><span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">,</span> <span style="color: #cdcaa9; font-weight: bold">int</span><span style="color: #ffffff">=</span><span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">);</span>
+                        
+                        <span style="color: #008800; font-style: italic; background-color: #0f140f">// Destructor</span>
+                        <span style="color: #ffffff">~BirdSprite();</span>
+                        
+                        <span style="color: #008800; font-style: italic; background-color: #0f140f">// Functions</span>
+                        <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">jump</span><span style="color: #ffffff">();</span>
+                        <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">fall</span><span style="color: #ffffff">();</span>
+                        <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">move</span><span style="color: #ffffff">(</span><span style="color: #fb660a; font-weight: bold">const</span> <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">&amp;);</span>
+                        <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">centerOrigin</span><span style="color: #ffffff">();</span>
+                        <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">setPosition</span><span style="color: #ffffff">(</span><span style="color: #fb660a; font-weight: bold">const</span> <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">&amp;);</span>
+                        <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">setScale</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">float</span><span style="color: #ffffff">);</span>
+
+                        <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">getPosition();</span>
+                        <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">getTopPosition();</span>
+                        <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">getRightPosition();</span>
+                        <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">getSizeofBird();</span>
+                        
+                        <span style="color: #ffffff">sf::Sprite</span> <span style="color: #ffffff">getSprite();</span>
+                    <span style="color: #ffffff">};</span>
+                <span style="color: #ffffff">}</span>
+
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#endif </span><span style="color: #008800; font-style: italic; background-color: #0f140f">/* Bird_hpp */</span><span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f"></span>
+                </pre></div>
+            </div>
+        </div>
+    </body>
+</html>

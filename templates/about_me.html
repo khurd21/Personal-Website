@@ -1,0 +1,95 @@
+{% extends "head.html" %}
+
+{% block title %}About Me{% endblock %}
+
+{% block content %}
+
+<h1 class="title center">
+	A Little Bit About Me....
+</h1>
+<hr>       
+<!--BODY-->
+<section> <!--NEED TO FIX THIS DIV ID=FILLRIGHT NOT EXIST ANYMORE-->
+	<div id="fillright" class="col-container">
+		<div class="col-left">
+			<p>
+			<center><br>
+				<img src="{{url_for('static', filename='images/me.jpg')}}" width=233 height=350>
+			</center>
+			</p>
+		</div> 
+		<div class="col-right">
+			<p><br>
+			My name is Kyle Hurd and I am currently attending Washington State University to pursue a bachelor’s degree in Computer Science. I have a cumulative GPA of 3.95 and actively participate in local musicals, fun runs, and skydiving!<br><br>I earned my associate of arts degree in music from Grays Harbor Community College in 2017 and briefly attended Pacific Lutheran University to study music composition before transferring to Washington State University in 2019. 
+			</p>
+		</div>
+	</div>
+</section>
+
+<hr>
+
+<section>
+	<div id="fillleft" class="col-container">
+		<div class="col-left">
+			<p><br>
+			<b>Programming!</b> At WSU I have studied C/C++ and also currently help as a TA for an introduction to Python course. I created this site using HTML and Flask. I update my website regularly, adding new projects such as music and programs. Check back periodically to see any new content I have added! 
+			</p>
+		</div>
+		<div class="col-right"><br>
+			<center>
+				<img src="{{url_for('static', filename='images/program_logo.jpg')}}" width=200 height=200>
+			</center>
+		</div>
+	</div>
+</section>
+        
+<hr>
+        
+<section>
+	<div id="fillright" class="col-container">
+		<div class="col-left"><br>
+			<center>
+				<img src="{{url_for('static', filename='images/tool.png')}}" width=200 height=200>
+			</center>
+		</div>
+		<div class="col-right">
+			<p><br>
+			<b>Work Experience.</b> In the Summer of 2020, I worked with the Aberdeen School District. I installed AP units, phones, and new cameras around the schools. In addition, I repaired student and teacher laptops which primarily consisted of Chromebooks and Windows computers. I learned a lot about computer repair and diagnosing issues on the hardware and software side of computer maintenance.<br><br>I am also a teacher’s assistant for an introduction to Python course at Washington State University. I host weekly labs and office hours. I am also responsible for grading programming assignments.
+			</p>
+		</div>
+	</div>
+</section>
+        
+<hr>
+        
+<section>
+	<div id="fillleft" class="col-container">
+		<div class="col-left">
+			<p><br>
+			<b>Skydiving!</b> I am an avid skydiver with 375 jumps to my name and a type <a id="link "href="https://skydiveparacletexp.com/2017/02/15/skydiving-license-levels/">'C' license</a>. My goal as of now is to continue advancing my freeflying skills and eventually become an instructor in the sport. For now, I am jumping for fun at my home drop zone in Shelton, WA and traveling to other drop zones around the state whenever I can!
+			</p>
+		</div>
+		<div class="col-right"><br>
+			<video width="320" height="240" autoplay loop muted playsinline>
+				<source src="{{url_for('static', filename='videos/freeflying.mp4')}}" type="video/mp4">
+			</video>
+		</div>
+	</div>
+</section>
+
+<hr>
+
+<section>
+	<div id="fillright" class="col-container">
+		<div class="col-left">
+			<img src="{{url_for('static', filename='images/music.png')}}" width=200 height=200>
+		</div>
+		<div class="col-right">
+			<p>
+			<b>Music!</b> I enjoy composing and playing music. My instruments of choice are the French horn and guitar. In 2018 I composed a jazz rendition of Tom Petty’s “Free Fallin’” for the Grays Harbor College’s graduation ceremony and in 2019 made a solo guitar piece for a composer’s forum at Pacific Lutheran University. You can hear some of my music in the music tab above.
+			</p>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

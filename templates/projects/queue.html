@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>kHurd Queue</title>
+        <style>
+            {
+                box-sizing: border-box;
+            }
+            h1 {
+                font-size: 50px;
+            }
+            body {
+                margin: 0;
+                font-size: 100%;
+            }
+            .center {
+                text-align: center;
+                color: white;
+            }
+            ul {
+                position: -webkit-sticky;
+                position: sticky;
+                top: 0;
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                background-color: #444;
+                height: 100%;
+                overflow: auto;
+            }
+            li {
+                float: left;
+            }
+            li a {
+                display: block;
+                color: #000;
+                padding: 12px 14px;
+                text-decoration: none;
+            }
+            li a.active {
+                background-color: #808080;
+                color: white;
+            }
+            li a:hover:not(.active) {
+                background-color: #555;
+                color: white;
+            }
+        </style>
+    </head>
+            
+            <ul>
+                <li><a href="{{url_for('home_page')}}">Main</a></li>
+                <li><a class= "active" href="{{url_for('projects')}}">Projects</a></li>
+                <li><a href="{{url_for('my_music')}}">My Music</a></li>
+                <li><a href="{{url_for('tabs')}}">Tabs</a></li>
+                <li><a href="{{url_for('about_me')}}">About Me</a></li>
+            </ul>
+            
+        <body style="background-color: grey">
+        <!--MAIN TITLE-->
+        <h1 class= "center">
+            Queue
+        </h1>
+        
+        <!--SUB TITLE-->
+        <h2 class="center">
+            Made by Kyle Hurd
+            <hr>
+        </h2>
+        
+        <p>
+<div style="background: #111111; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-style: italic; background-color: #0f140f"></span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//  Queue.hpp</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//  CustomLibraries</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//  Created by Kyle Hurd on 11/13/2020</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//  Description</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//  This Queue can hold a T type for data.</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//  For any type that is created by the user, you do not need to</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//  overload any boolean operations. You can get the front data</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//  and rear data from the queue, which is separate from the dequeue</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//  and enqueue operations.</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+
+<span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#ifndef Queue_hpp</span>
+<span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#define Queue_hpp</span>
+
+<span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &lt;iostream&gt;</span>
+
+<span style="color: #fb660a; font-weight: bold">template</span> <span style="color: #ffffff">&lt;</span><span style="color: #fb660a; font-weight: bold">class</span> <span style="color: #ffffff">T&gt;</span>
+<span style="color: #fb660a; font-weight: bold">class</span> <span style="color: #ffffff">Queue</span> <span style="color: #ffffff">{</span>
+<span style="color: #ffffff">private:</span>
+    <span style="color: #fb660a; font-weight: bold">struct</span> <span style="color: #ffffff">QueueNode</span> <span style="color: #ffffff">{</span>
+        <span style="color: #ffffff">T</span> <span style="color: #ffffff">data;</span>
+        <span style="color: #ffffff">QueueNode</span> <span style="color: #ffffff">*next;</span>
+    <span style="color: #ffffff">};</span>
+
+    <span style="color: #ffffff">QueueNode</span> <span style="color: #ffffff">*front;</span>
+    <span style="color: #ffffff">QueueNode</span> <span style="color: #ffffff">*rear;</span>
+    <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">numItems;</span>
+    <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">size;</span>
+
+<span style="color: #ffffff">public:</span>
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Constructor</span>
+    <span style="color: #ffffff">Queue(</span><span style="color: #cdcaa9; font-weight: bold">int</span><span style="color: #ffffff">=</span><span style="color: #0086f7; font-weight: bold">10</span><span style="color: #ffffff">);</span>
+
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Destructor</span>
+    <span style="color: #ffffff">~Queue();</span>
+
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Functions</span>
+    <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">enqueue</span><span style="color: #ffffff">(T);</span>
+    <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">dequeue</span><span style="color: #ffffff">();</span>
+    <span style="color: #cdcaa9; font-weight: bold">bool</span> <span style="color: #ffffff">isEmpty()</span> <span style="color: #fb660a; font-weight: bold">const</span><span style="color: #ffffff">;</span>
+    <span style="color: #cdcaa9; font-weight: bold">bool</span> <span style="color: #ffffff">isFull()</span> <span style="color: #fb660a; font-weight: bold">const</span><span style="color: #ffffff">;</span>
+    <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">clear</span><span style="color: #ffffff">();</span>
+
+    <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ff0086; font-weight: bold">getSize</span><span style="color: #ffffff">();</span>
+    <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ff0086; font-weight: bold">getNumItems</span><span style="color: #ffffff">();</span>
+    <span style="color: #ffffff">T</span>   <span style="color: #ff0086; font-weight: bold">getFront</span><span style="color: #ffffff">();</span>
+    <span style="color: #ffffff">T</span>   <span style="color: #ff0086; font-weight: bold">getRear</span><span style="color: #ffffff">();</span>
+<span style="color: #ffffff">};</span>
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// Constructor</span>
+<span style="color: #fb660a; font-weight: bold">template</span> <span style="color: #ffffff">&lt;</span><span style="color: #fb660a; font-weight: bold">class</span> <span style="color: #ffffff">T&gt;</span>
+<span style="color: #ffffff">Queue&lt;T&gt;::Queue(</span><span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">s)</span> <span style="color: #ffffff">{</span>
+    <span style="color: #ffffff">size</span>        <span style="color: #ffffff">=</span> <span style="color: #ffffff">s;</span>
+    <span style="color: #ffffff">numItems</span>    <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">;</span>
+    <span style="color: #ffffff">front</span>       <span style="color: #ffffff">=</span> <span style="color: #ffffff">nullptr;</span>
+    <span style="color: #ffffff">rear</span>        <span style="color: #ffffff">=</span> <span style="color: #ffffff">nullptr;</span>
+<span style="color: #ffffff">}</span>
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// Destructor</span>
+<span style="color: #fb660a; font-weight: bold">template</span> <span style="color: #ffffff">&lt;</span><span style="color: #fb660a; font-weight: bold">class</span> <span style="color: #ffffff">T&gt;</span>
+<span style="color: #ffffff">Queue&lt;T&gt;::~Queue()</span> <span style="color: #ffffff">{</span>
+    <span style="color: #ffffff">clear();</span>
+<span style="color: #ffffff">}</span>
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// **Public** //</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// isEmpty()</span>
+<span style="color: #fb660a; font-weight: bold">template</span> <span style="color: #ffffff">&lt;</span><span style="color: #fb660a; font-weight: bold">class</span> <span style="color: #ffffff">T&gt;</span>
+<span style="color: #cdcaa9; font-weight: bold">bool</span> <span style="color: #ffffff">Queue&lt;T&gt;::isEmpty()</span> <span style="color: #fb660a; font-weight: bold">const</span> <span style="color: #ffffff">{</span>
+    <span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">(numItems</span> <span style="color: #ffffff">&lt;=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">);</span>
+<span style="color: #ffffff">}</span>
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// **Public** //</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// isFull()</span>
+<span style="color: #fb660a; font-weight: bold">template</span> <span style="color: #ffffff">&lt;</span><span style="color: #fb660a; font-weight: bold">class</span> <span style="color: #ffffff">T&gt;</span>
+<span style="color: #cdcaa9; font-weight: bold">bool</span> <span style="color: #ffffff">Queue&lt;T&gt;::isFull()</span> <span style="color: #fb660a; font-weight: bold">const</span> <span style="color: #ffffff">{</span>
+    <span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">(numItems</span> <span style="color: #ffffff">&gt;=</span> <span style="color: #ffffff">size);</span>
+<span style="color: #ffffff">}</span>
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// **Public** //</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// getSize()</span>
+<span style="color: #fb660a; font-weight: bold">template</span> <span style="color: #ffffff">&lt;</span><span style="color: #fb660a; font-weight: bold">class</span> <span style="color: #ffffff">T&gt;</span>
+<span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">Queue&lt;T&gt;::getSize()</span> <span style="color: #ffffff">{</span>
+    <span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">size;</span>
+<span style="color: #ffffff">}</span>
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// **Public** //</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// getNumItems()</span>
+<span style="color: #fb660a; font-weight: bold">template</span> <span style="color: #ffffff">&lt;</span><span style="color: #fb660a; font-weight: bold">class</span> <span style="color: #ffffff">T&gt;</span>
+<span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">Queue&lt;T&gt;::getNumItems()</span> <span style="color: #ffffff">{</span>
+    <span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">numItems;</span>
+<span style="color: #ffffff">}</span>
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// **Public** //</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// front()</span>
+<span style="color: #fb660a; font-weight: bold">template</span> <span style="color: #ffffff">&lt;</span><span style="color: #fb660a; font-weight: bold">class</span> <span style="color: #ffffff">T&gt;</span>
+<span style="color: #ffffff">T</span> <span style="color: #ffffff">Queue&lt;T&gt;::getFront()</span> <span style="color: #ffffff">{</span>
+    <span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">front-&gt;data;</span>
+<span style="color: #ffffff">}</span>
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// **Public** //</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// rear()</span>
+<span style="color: #fb660a; font-weight: bold">template</span> <span style="color: #ffffff">&lt;</span><span style="color: #fb660a; font-weight: bold">class</span> <span style="color: #ffffff">T&gt;</span>
+<span style="color: #ffffff">T</span> <span style="color: #ffffff">Queue&lt;T&gt;::getRear()</span> <span style="color: #ffffff">{</span>
+    <span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">rear-&gt;data;</span>
+<span style="color: #ffffff">}</span>
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// **Public** //</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// enqueue()</span>
+<span style="color: #fb660a; font-weight: bold">template</span> <span style="color: #ffffff">&lt;</span><span style="color: #fb660a; font-weight: bold">class</span> <span style="color: #ffffff">T&gt;</span>
+<span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ffffff">Queue&lt;T&gt;::enqueue(T</span> <span style="color: #ffffff">newData)</span> <span style="color: #ffffff">{</span>
+    <span style="color: #ffffff">QueueNode</span> <span style="color: #ffffff">*newNode</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">nullptr;</span>
+    <span style="color: #ffffff">newNode</span> <span style="color: #ffffff">=</span> <span style="color: #fb660a; font-weight: bold">new</span> <span style="color: #ffffff">QueueNode;</span>
+
+    <span style="color: #ffffff">newNode-&gt;data</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">newData;</span>
+    <span style="color: #ffffff">newNode-&gt;next</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">nullptr;</span>
+
+    <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(isEmpty())</span> <span style="color: #ffffff">{</span>
+        <span style="color: #ffffff">front</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">rear</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">newNode;</span>
+    <span style="color: #ffffff">}</span>
+    <span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(isFull())</span> <span style="color: #ffffff">{</span>
+        <span style="color: #ffffff">std::cout</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #0086d2">&quot;Queue is full. Cannot add data.&quot;</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">std::endl;</span>
+        <span style="color: #fb660a; font-weight: bold">delete</span> <span style="color: #ffffff">newNode;</span>
+    <span style="color: #ffffff">}</span>
+    <span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #ffffff">{</span>
+        <span style="color: #ffffff">rear-&gt;next</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">newNode;</span>
+        <span style="color: #ffffff">rear</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">newNode;</span>
+    <span style="color: #ffffff">}</span>
+    <span style="color: #ffffff">++numItems;</span>
+<span style="color: #ffffff">}</span>
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// **Public** //</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// dequeue()</span>
+<span style="color: #fb660a; font-weight: bold">template</span> <span style="color: #ffffff">&lt;</span><span style="color: #fb660a; font-weight: bold">class</span> <span style="color: #ffffff">T&gt;</span>
+<span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ffffff">Queue&lt;T&gt;::dequeue()</span> <span style="color: #ffffff">{</span>
+    <span style="color: #ffffff">QueueNode</span> <span style="color: #ffffff">*temp</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">nullptr;</span>
+
+    <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(isEmpty())</span> <span style="color: #ffffff">{</span>
+        <span style="color: #ffffff">std::cout</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #0086d2">&quot;Queue is empty. Nothing to grab&quot;</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">std::endl;</span>
+    <span style="color: #ffffff">}</span>
+    <span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #ffffff">{</span>
+        <span style="color: #ffffff">temp</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">front;</span>
+        <span style="color: #ffffff">front</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">front-&gt;next;</span>
+        <span style="color: #fb660a; font-weight: bold">delete</span> <span style="color: #ffffff">temp;</span>
+        <span style="color: #ffffff">--numItems;</span>
+    <span style="color: #ffffff">}</span>
+<span style="color: #ffffff">}</span>
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// **Public** //</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// clear()</span>
+<span style="color: #fb660a; font-weight: bold">template</span> <span style="color: #ffffff">&lt;</span><span style="color: #fb660a; font-weight: bold">class</span> <span style="color: #ffffff">T&gt;</span>
+<span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ffffff">Queue&lt;T&gt;::clear()</span> <span style="color: #ffffff">{</span>
+    <span style="color: #fb660a; font-weight: bold">while</span> <span style="color: #ffffff">(!isEmpty())</span> <span style="color: #ffffff">{</span>
+        <span style="color: #ffffff">dequeue();</span>
+    <span style="color: #ffffff">}</span>
+    <span style="color: #ffffff">std::cout</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #0086d2">&quot;Queue is cleared.&quot;</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">std::endl;</span>
+<span style="color: #ffffff">}</span>
+
+<span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#endif </span><span style="color: #008800; font-style: italic; background-color: #0f140f">/* Queue.hpp */</span><span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f"></span>
+</pre></div>
+
+
+        </p>
+    </body>
+</html>

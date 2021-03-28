@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Flappy Bird</title>
+        <style>
+            {
+                box-sizing: border-box;
+            }
+            h1 {
+                font-size: 50px;
+            }
+            body {
+                margin: 0;
+                font-size: 100%;
+            }
+            .center {
+                text-align: center;
+                color: white;
+            }
+            .column {
+                float: left;
+                color: white;
+            }
+            .left {
+                width: 33.33%;
+            }
+            .middle {
+                width: 33.33%;
+            }
+            .right {
+                width: 33.34%;
+            }
+            .row: after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+        ul {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background-color: #444;
+            height: 100%;
+            overflow: auto;
+        }
+        li {
+            float: left;
+        }
+        #nav li a {
+            display: block;
+            color: #000;
+            padding: 12px 14px;
+            text-decoration: none;
+        }
+        
+        #nav li a.active {
+            background-color: #808080;
+            color: white;
+        }
+        
+        #nav li a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
+        #links a:link, a:visited {
+                background-color: #000;
+                color: white;
+                padding: 15px 25px;
+                text-align: center;
+                text-decoration: none;
+                dislay: inline-block;
+            }
+        #links a:hover, a:active {
+            background-color: grey;
+        }
+        </style>
+    </head>
+    
+    <body style="background-color: grey">
+        <ul id="nav">
+            <li><a href="{{url_for('home_page')}}">Main</a></li>
+            <li><a class="active" href="{{url_for('projects')}}">Projects</a></li>
+            <li><a href="{{url_for('my_music')}}">My Music</a></li>
+            <li><a href="{{url_for('tabs')}}">Tabs</a></li>
+            <li><a href="{{url_for('about_me')}}">About Me</a></li>
+        </ul>
+    
+        <h1 class="center">
+            Menu Scene
+        </h1>
+        
+        <h3 class="center">
+            Made by Kyle Hurd
+            <hr>
+        </h3>
+        
+        <div>
+            <div>
+                <div style="background: #111111; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-style: italic; background-color: #0f140f"></span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  MenuScene.cpp</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  FlappyBird</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Created by Kyle Hurd on 11/25/20.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Copyright © 2020 Kyle Hurd. All rights reserved.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Description</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  In the menu scene, the user playing the game has the ability to use</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  the arrow keys and ENTER button to select an item from the menu options</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  list. When one of the menu items is selected (such as high scores, change</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  name, normal mode, etc.) the menu scene detects which item the user wants</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  to go to and updates the currentState, a global variable declared in the</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  helperFunctions file. Upon updating the state, the scene returns to main()</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  [or the function call] without performing any more actions.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &quot;MenuScene.hpp&quot;</span>
+
+                <span style="color: #fb660a; font-weight: bold">namespace</span> <span style="color: #ffffff">MenuScene</span> <span style="color: #ffffff">{</span>
+
+                <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ffffff">menu(sf::RenderWindow</span> <span style="color: #ffffff">&amp;window)</span> <span style="color: #ffffff">{</span>
+                    <span style="color: #ffffff">print(</span><span style="color: #0086d2">&quot;Entering MenuScene&quot;</span><span style="color: #ffffff">);</span>
+                    
+                    <span style="color: #fb660a; font-weight: bold">const</span> <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">x</span> <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">,</span> <span style="color: #ffffff">y</span> <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">;</span>
+                    <span style="color: #ffffff">sf::Texture</span> <span style="color: #ffffff">Birdtexture;</span>
+                    
+                    <span style="color: #ffffff">sf::Texture</span> <span style="color: #ffffff">BackgroundTexture;</span>
+                    <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(!BackgroundTexture.loadFromFile(</span><span style="color: #0086d2">&quot;Resources/Sprites/PixeledMenuWSU1.jpg&quot;</span><span style="color: #ffffff">))</span> <span style="color: #ffffff">{</span>
+                        <span style="color: #ffffff">print(</span><span style="color: #0086d2">&quot;Could not load PixeledMenuWSU1.jpg from file&quot;</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">}</span>
+                    <span style="color: #ffffff">sf::Sprite</span> <span style="color: #ffffff">Background(BackgroundTexture);</span>
+                    <span style="color: #ffffff">Background.setScale(</span><span style="color: #0086f7; font-weight: bold">1.03</span><span style="color: #ffffff">,</span> <span style="color: #0086f7; font-weight: bold">1.04</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">Background.setPosition(-</span><span style="color: #0086f7; font-weight: bold">4</span><span style="color: #ffffff">,</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">);</span>
+                    
+                    <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(!Birdtexture.loadFromFile(</span><span style="color: #0086d2">&quot;Resources/Sprites/FlappyBird.png&quot;</span><span style="color: #ffffff">))</span> <span style="color: #ffffff">{</span>
+                        <span style="color: #ffffff">print(</span><span style="color: #0086d2">&quot;Could not load FlappyBird.png&quot;</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">}</span>
+                    
+                    <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">birdHSPos(</span><span style="color: #0086f7; font-weight: bold">50</span><span style="color: #ffffff">,</span> <span style="color: #0086f7; font-weight: bold">260</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">birdCNPos(</span><span style="color: #0086f7; font-weight: bold">50</span><span style="color: #ffffff">,</span> <span style="color: #0086f7; font-weight: bold">360</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">birdNMPos(</span><span style="color: #0086f7; font-weight: bold">50</span><span style="color: #ffffff">,</span> <span style="color: #0086f7; font-weight: bold">460</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">birdFIPos(</span><span style="color: #0086f7; font-weight: bold">50</span><span style="color: #ffffff">,</span> <span style="color: #0086f7; font-weight: bold">560</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">birdCSPos(</span><span style="color: #0086f7; font-weight: bold">50</span><span style="color: #ffffff">,</span> <span style="color: #0086f7; font-weight: bold">660</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">sf::Vector2f</span> <span style="color: #ffffff">birdEXPos(</span><span style="color: #0086f7; font-weight: bold">50</span><span style="color: #ffffff">,</span> <span style="color: #0086f7; font-weight: bold">760</span><span style="color: #ffffff">);</span>
+                    
+                    <span style="color: #ffffff">Bird::BirdSprite</span> <span style="color: #ffffff">bird(Birdtexture,</span> <span style="color: #ffffff">x,</span> <span style="color: #ffffff">y);</span>
+                    <span style="color: #ffffff">bird.setScale(</span><span style="color: #0086f7; font-weight: bold">0.7</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">bird.centerOrigin();</span>
+                    <span style="color: #ffffff">bird.setPosition(birdHSPos);</span>
+                    
+                    <span style="color: #ffffff">Bird::BirdSprite</span> <span style="color: #ffffff">moveableObj(Birdtexture,</span> <span style="color: #ffffff">x,</span> <span style="color: #ffffff">y);</span>
+                    <span style="color: #ffffff">moveableObj.centerOrigin();</span>
+                    <span style="color: #ffffff">moveableObj.setPosition(sf::Vector2f(-</span><span style="color: #0086f7; font-weight: bold">45</span><span style="color: #ffffff">,</span> <span style="color: #ffffff">HEIGHT</span> <span style="color: #ffffff">-</span> <span style="color: #0086f7; font-weight: bold">75</span><span style="color: #ffffff">));</span>
+                    
+                    <span style="color: #ffffff">sf::Font</span> <span style="color: #ffffff">font;</span>
+                    <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(!font.loadFromFile(</span><span style="color: #0086d2">&quot;Resources/Fonts/sansation.ttf&quot;</span><span style="color: #ffffff">))</span> <span style="color: #ffffff">{</span>
+                        <span style="color: #ffffff">print(</span><span style="color: #0086d2">&quot;Could not load sansation.ttf&quot;</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">}</span>
+                    
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Modifying Main Title</span>
+                    <span style="color: #ffffff">sf::Text</span> <span style="color: #ffffff">mainTitle;</span>
+                    <span style="color: #ffffff">mainTitle.setFont(font);</span>
+                    <span style="color: #ffffff">mainTitle.setString(</span><span style="color: #0086d2">&quot;THE FLAPPIEST BIRD&quot;</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">mainTitle.setStyle(sf::Text::Underlined);</span>
+                    <span style="color: #ffffff">mainTitle.setCharacterSize(</span><span style="color: #0086f7; font-weight: bold">50</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">mainTitle.setFillColor(sf::Color::Yellow);</span>
+                    <span style="color: #ffffff">mainTitle.setOrigin(mainTitle.getLocalBounds().left</span> <span style="color: #ffffff">+</span> <span style="color: #ffffff">mainTitle.getLocalBounds().width</span> <span style="color: #ffffff">/</span> <span style="color: #0086f7; font-weight: bold">2.0f</span><span style="color: #ffffff">,</span>
+                                         <span style="color: #ffffff">mainTitle.getLocalBounds().top</span> <span style="color: #ffffff">+</span> <span style="color: #ffffff">mainTitle.getLocalBounds().height</span> <span style="color: #ffffff">/</span> <span style="color: #0086f7; font-weight: bold">2.0f</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">mainTitle.setPosition((</span><span style="color: #cdcaa9; font-weight: bold">int</span><span style="color: #ffffff">)</span> <span style="color: #ffffff">WIDTH</span> <span style="color: #ffffff">/</span> <span style="color: #0086f7; font-weight: bold">2</span><span style="color: #ffffff">,</span> <span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">int</span><span style="color: #ffffff">)</span> <span style="color: #0086f7; font-weight: bold">50</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">mainTitle.setOutlineColor(sf::Color::Black);</span>
+                    <span style="color: #ffffff">mainTitle.setOutlineThickness(</span><span style="color: #0086f7; font-weight: bold">8</span><span style="color: #ffffff">);</span>
+                    
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Modifying Greet</span>
+                    <span style="color: #ffffff">sf::Text</span> <span style="color: #ffffff">greeting;</span>
+                    <span style="color: #ffffff">greeting.setFont(font);</span>
+                    <span style="color: #ffffff">greeting.setString(</span><span style="color: #0086d2">&quot;Hello, &quot;</span> <span style="color: #ffffff">+</span> <span style="color: #ffffff">playerStats.username</span> <span style="color: #ffffff">+</span> <span style="color: #0086d2">&quot;!&quot;</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">greeting.setCharacterSize(</span><span style="color: #0086f7; font-weight: bold">30</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">greeting.setFillColor(sf::Color::Yellow);</span>
+                    <span style="color: #ffffff">greeting.setPosition(</span><span style="color: #0086f7; font-weight: bold">50</span><span style="color: #ffffff">,</span> <span style="color: #0086f7; font-weight: bold">100</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">greeting.setOutlineColor(sf::Color::Black);</span>
+                    <span style="color: #ffffff">greeting.setOutlineThickness(</span><span style="color: #0086f7; font-weight: bold">8</span><span style="color: #ffffff">);</span>
+                    
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Modifying Instructions</span>
+                    <span style="color: #ffffff">sf::Text</span> <span style="color: #ffffff">instructions;</span>
+                    <span style="color: #ffffff">instructions.setFont(font);</span>
+                    <span style="color: #ffffff">instructions.setString(</span><span style="color: #0086d2">&quot;Use UP and DOWN arrows and ENTER to select an option...&quot;</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">instructions.setCharacterSize(</span><span style="color: #0086f7; font-weight: bold">25</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">instructions.setFillColor(sf::Color::Yellow);</span>
+                    <span style="color: #ffffff">instructions.setPosition(</span><span style="color: #0086f7; font-weight: bold">30</span><span style="color: #ffffff">,</span> <span style="color: #ffffff">HEIGHT</span> <span style="color: #ffffff">-</span> <span style="color: #0086f7; font-weight: bold">40</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">instructions.setOutlineColor(sf::Color::Black);</span>
+                    <span style="color: #ffffff">instructions.setOutlineThickness(</span><span style="color: #0086f7; font-weight: bold">8</span><span style="color: #ffffff">);</span>
+                    
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Modifying High Score</span>
+                    <span style="color: #ffffff">sf::Text</span> <span style="color: #ffffff">highScores;</span>
+                    <span style="color: #ffffff">highScores.setFont(font);</span>
+                    <span style="color: #ffffff">highScores.setString(</span><span style="color: #0086d2">&quot;High Scores&quot;</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">highScores.setCharacterSize(</span><span style="color: #0086f7; font-weight: bold">30</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">highScores.setFillColor(sf::Color::Yellow);</span>
+                    <span style="color: #ffffff">highScores.setPosition(</span><span style="color: #0086f7; font-weight: bold">100</span><span style="color: #ffffff">,</span> <span style="color: #0086f7; font-weight: bold">250</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">highScores.setOutlineColor(sf::Color::Black);</span>
+                    <span style="color: #ffffff">highScores.setOutlineThickness(</span><span style="color: #0086f7; font-weight: bold">8</span><span style="color: #ffffff">);</span>
+                    
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Modfying Change Name</span>
+                    <span style="color: #ffffff">sf::Text</span> <span style="color: #ffffff">changeName;</span>
+                    <span style="color: #ffffff">changeName.setFont(font);</span>
+                    <span style="color: #ffffff">changeName.setString(</span><span style="color: #0086d2">&quot;Change Name&quot;</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">changeName.setCharacterSize(</span><span style="color: #0086f7; font-weight: bold">30</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">changeName.setFillColor(sf::Color::Yellow);</span>
+                    <span style="color: #ffffff">changeName.setPosition(</span><span style="color: #0086f7; font-weight: bold">100</span><span style="color: #ffffff">,</span> <span style="color: #0086f7; font-weight: bold">350</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">changeName.setOutlineColor(sf::Color::Black);</span>
+                    <span style="color: #ffffff">changeName.setOutlineThickness(</span><span style="color: #0086f7; font-weight: bold">8</span><span style="color: #ffffff">);</span>
+                    
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Modifying Normal Mode</span>
+                    <span style="color: #ffffff">sf::Text</span> <span style="color: #ffffff">normalMode;</span>
+                    <span style="color: #ffffff">normalMode.setFont(font);</span>
+                    <span style="color: #ffffff">normalMode.setString(</span><span style="color: #0086d2">&quot;Normal Mode&quot;</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">normalMode.setCharacterSize(</span><span style="color: #0086f7; font-weight: bold">30</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">normalMode.setFillColor(sf::Color::Yellow);</span>
+                    <span style="color: #ffffff">normalMode.setPosition(</span><span style="color: #0086f7; font-weight: bold">100</span><span style="color: #ffffff">,</span> <span style="color: #0086f7; font-weight: bold">450</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">normalMode.setOutlineColor(sf::Color::Black);</span>
+                    <span style="color: #ffffff">normalMode.setOutlineThickness(</span><span style="color: #0086f7; font-weight: bold">8</span><span style="color: #ffffff">);</span>
+                    
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Modifying Flappy Invaders</span>
+                    <span style="color: #ffffff">sf::Text</span> <span style="color: #ffffff">invadersMode;</span>
+                    <span style="color: #ffffff">invadersMode.setFont(font);</span>
+                    <span style="color: #ffffff">invadersMode.setString(</span><span style="color: #0086d2">&quot;Flappy Invaders&quot;</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">invadersMode.setCharacterSize(</span><span style="color: #0086f7; font-weight: bold">30</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">invadersMode.setFillColor(sf::Color::Yellow);</span>
+                    <span style="color: #ffffff">invadersMode.setPosition(</span><span style="color: #0086f7; font-weight: bold">100</span><span style="color: #ffffff">,</span> <span style="color: #0086f7; font-weight: bold">550</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">invadersMode.setOutlineColor(sf::Color::Black);</span>
+                    <span style="color: #ffffff">invadersMode.setOutlineThickness(</span><span style="color: #0086f7; font-weight: bold">8</span><span style="color: #ffffff">);</span>
+                    
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Modifying Credits Title</span>
+                    <span style="color: #ffffff">sf::Text</span> <span style="color: #ffffff">credits;</span>
+                    <span style="color: #ffffff">credits.setFont(font);</span>
+                    <span style="color: #ffffff">credits.setString(</span><span style="color: #0086d2">&quot;Credits&quot;</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">credits.setCharacterSize(</span><span style="color: #0086f7; font-weight: bold">30</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">credits.setFillColor(sf::Color::Yellow);</span>
+                    <span style="color: #ffffff">credits.setPosition(</span><span style="color: #0086f7; font-weight: bold">100</span><span style="color: #ffffff">,</span> <span style="color: #0086f7; font-weight: bold">650</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">credits.setOutlineColor(sf::Color::Black);</span>
+                    <span style="color: #ffffff">credits.setOutlineThickness(</span><span style="color: #0086f7; font-weight: bold">8</span><span style="color: #ffffff">);</span>
+                    
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Modifying Exit Title</span>
+                    <span style="color: #ffffff">sf::Text</span> <span style="color: #ffffff">exit;</span>
+                    <span style="color: #ffffff">exit.setFont(font);</span>
+                    <span style="color: #ffffff">exit.setString(</span><span style="color: #0086d2">&quot;Exit&quot;</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">exit.setCharacterSize(</span><span style="color: #0086f7; font-weight: bold">30</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">exit.setFillColor(sf::Color::Yellow);</span>
+                    <span style="color: #ffffff">exit.setPosition(</span><span style="color: #0086f7; font-weight: bold">100</span><span style="color: #ffffff">,</span> <span style="color: #0086f7; font-weight: bold">750</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">exit.setOutlineColor(sf::Color::Black);</span>
+                    <span style="color: #ffffff">exit.setOutlineThickness(</span><span style="color: #0086f7; font-weight: bold">8</span><span style="color: #ffffff">);</span>
+                    
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Setting Sound</span>
+                    <span style="color: #ffffff">sf::SoundBuffer</span> <span style="color: #ffffff">buffer;</span>
+                    <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(!buffer.loadFromFile(</span><span style="color: #0086d2">&quot;Resources/Sounds/Click.wav&quot;</span><span style="color: #ffffff">))</span> <span style="color: #ffffff">{</span>
+                        <span style="color: #ffffff">print(</span><span style="color: #0086d2">&quot;Unable to load Click.wav&quot;</span><span style="color: #ffffff">);</span>
+                    <span style="color: #ffffff">}</span>
+                    <span style="color: #ffffff">sf::Sound</span> <span style="color: #ffffff">click;</span>
+                    <span style="color: #ffffff">click.setBuffer(buffer);</span>
+                    
+                    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Modifying Window</span>
+                    <span style="color: #fb660a; font-weight: bold">while</span> <span style="color: #ffffff">(window.isOpen())</span> <span style="color: #ffffff">{</span>
+                        <span style="color: #ffffff">sf::Event</span> <span style="color: #ffffff">event;</span>
+                        <span style="color: #fb660a; font-weight: bold">while</span> <span style="color: #ffffff">(window.pollEvent(event))</span> <span style="color: #ffffff">{</span>
+                            <span style="color: #fb660a; font-weight: bold">switch</span> <span style="color: #ffffff">(event.type)</span> <span style="color: #ffffff">{</span>
+                                <span style="color: #fb660a; font-weight: bold">case</span> <span style="color: #ffffff">sf</span>:<span style="color: #ffffff">:Event::KeyPressed:</span>
+                                    <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(event.key.code</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">sf::Keyboard::Escape)</span> <span style="color: #ffffff">{</span>
+                                        <span style="color: #ffffff">window.close();</span>
+                                        <span style="color: #ffffff">print(</span><span style="color: #0086d2">&quot;Window is closed.&quot;</span><span style="color: #ffffff">);</span>
+                                    <span style="color: #ffffff">}</span>
+                                    <span style="color: #008800; font-style: italic; background-color: #0f140f">/* *</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">                     *  Updates the state dependent on the location</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">                     *  of the bird. The switch case in main() will</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">                     *  then call the scene tied to said state.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">                     */</span>
+                                    <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(event.key.code</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">sf::Keyboard::Enter)</span> <span style="color: #ffffff">{</span>
+                                        <span style="color: #ffffff">print(</span><span style="color: #0086d2">&quot;Enter key pressed.&quot;</span><span style="color: #ffffff">);</span>
+                                        <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(bird.getPosition()</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">birdHSPos)</span>
+                                            <span style="color: #ffffff">currentState</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">HIGHSCORE;</span>
+                                        <span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(bird.getPosition()</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">birdCNPos)</span>
+                                            <span style="color: #ffffff">currentState</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">UPDATENAME;</span>
+                                        <span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(bird.getPosition()</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">birdNMPos)</span>
+                                            <span style="color: #ffffff">currentState</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">NORMAL;</span>
+                                        <span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(bird.getPosition()</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">birdFIPos)</span>
+                                            <span style="color: #ffffff">currentState</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">INVADERS;</span>
+                                        <span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(bird.getPosition()</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">birdCSPos)</span>
+                                            <span style="color: #ffffff">currentState</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">CREDITS;</span>
+                                        <span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #ff0086; font-weight: bold">if</span> <span style="color: #ffffff">(bird.getPosition()</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">birdEXPos)</span>
+                                            <span style="color: #ffffff">window.close();</span>
+                                        <span style="color: #fb660a; font-weight: bold">return</span><span style="color: #ffffff">;</span> <span style="color: #008800; font-style: italic; background-color: #0f140f">// return to main()</span>
+                                    <span style="color: #ffffff">}</span>
+                                    <span style="color: #008800; font-style: italic; background-color: #0f140f">/* *</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">                     *  Moves the bird obect up or down the menu</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">                     *  items.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">                     */</span>
+                                    <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(event.key.code</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">sf::Keyboard::Up)</span> <span style="color: #ffffff">{</span>
+                                        <span style="color: #ffffff">print(</span><span style="color: #0086d2">&quot;Up key pressed&quot;</span><span style="color: #ffffff">);</span>
+                                        <span style="color: #ffffff">click.play();</span>
+                                        <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(bird.getPosition()</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">birdHSPos)</span>
+                                            <span style="color: #ffffff">bird.setPosition(birdEXPos);</span>
+                                        <span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #ff0086; font-weight: bold">if</span> <span style="color: #ffffff">(bird.getPosition()</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">birdCNPos)</span>
+                                            <span style="color: #ffffff">bird.setPosition(birdHSPos);</span>
+                                        <span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #ff0086; font-weight: bold">if</span> <span style="color: #ffffff">(bird.getPosition()</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">birdNMPos)</span>
+                                            <span style="color: #ffffff">bird.setPosition(birdCNPos);</span>
+                                        <span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #ff0086; font-weight: bold">if</span> <span style="color: #ffffff">(bird.getPosition()</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">birdFIPos)</span>
+                                            <span style="color: #ffffff">bird.setPosition(birdNMPos);</span>
+                                        <span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #ff0086; font-weight: bold">if</span> <span style="color: #ffffff">(bird.getPosition()</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">birdCSPos)</span>
+                                            <span style="color: #ffffff">bird.setPosition(birdFIPos);</span>
+                                        <span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #ff0086; font-weight: bold">if</span> <span style="color: #ffffff">(bird.getPosition()</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">birdEXPos)</span>
+                                            <span style="color: #ffffff">bird.setPosition(birdCSPos);</span>
+                                    <span style="color: #ffffff">}</span>
+                                    <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(event.key.code</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">sf::Keyboard::Down)</span> <span style="color: #ffffff">{</span>
+                                        <span style="color: #ffffff">print(</span><span style="color: #0086d2">&quot;Down key pressed&quot;</span><span style="color: #ffffff">);</span>
+                                        <span style="color: #ffffff">click.play();</span>
+                                        <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(bird.getPosition()</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">birdHSPos)</span>
+                                            <span style="color: #ffffff">bird.setPosition(birdCNPos);</span>
+                                        <span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #ff0086; font-weight: bold">if</span> <span style="color: #ffffff">(bird.getPosition()</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">birdCNPos)</span>
+                                            <span style="color: #ffffff">bird.setPosition(birdNMPos);</span>
+                                        <span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #ff0086; font-weight: bold">if</span> <span style="color: #ffffff">(bird.getPosition()</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">birdNMPos)</span>
+                                            <span style="color: #ffffff">bird.setPosition(birdFIPos);</span>
+                                        <span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #ff0086; font-weight: bold">if</span> <span style="color: #ffffff">(bird.getPosition()</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">birdFIPos)</span>
+                                            <span style="color: #ffffff">bird.setPosition(birdCSPos);</span>
+                                        <span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #ff0086; font-weight: bold">if</span> <span style="color: #ffffff">(bird.getPosition()</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">birdCSPos)</span>
+                                            <span style="color: #ffffff">bird.setPosition(birdEXPos);</span>
+                                        <span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #ff0086; font-weight: bold">if</span> <span style="color: #ffffff">(bird.getPosition()</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">birdEXPos)</span>
+                                            <span style="color: #ffffff">bird.setPosition(birdHSPos);</span>
+                                    <span style="color: #ffffff">}</span>
+                                    <span style="color: #fb660a; font-weight: bold">break</span><span style="color: #ffffff">;</span>
+                                <span style="color: #fb660a; font-weight: bold">case</span> <span style="color: #ffffff">sf</span>:<span style="color: #ffffff">:Event::KeyReleased:</span>
+                                    <span style="color: #fb660a; font-weight: bold">break</span><span style="color: #ffffff">;</span>
+                                <span style="color: #ffffff">default:</span>
+                                    <span style="color: #fb660a; font-weight: bold">break</span><span style="color: #ffffff">;</span>
+                            <span style="color: #ffffff">}</span>
+                        <span style="color: #ffffff">}</span>
+                        <span style="color: #ffffff">moveableObj.move(sf::Vector2f(</span><span style="color: #0086f7; font-weight: bold">1</span><span style="color: #ffffff">,</span><span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">));</span>
+                        <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(moveableObj.getPosition().x</span> <span style="color: #ffffff">&gt;</span> <span style="color: #ffffff">WIDTH</span> <span style="color: #ffffff">+</span> <span style="color: #0086f7; font-weight: bold">45</span><span style="color: #ffffff">)</span>
+                            <span style="color: #ffffff">moveableObj.setPosition(sf::Vector2f(-</span><span style="color: #0086f7; font-weight: bold">45</span><span style="color: #ffffff">,</span> <span style="color: #ffffff">HEIGHT</span> <span style="color: #ffffff">-</span> <span style="color: #0086f7; font-weight: bold">75</span><span style="color: #ffffff">));</span>
+                        
+                        <span style="color: #008800; font-style: italic; background-color: #0f140f">// Drawing Items to Window</span>
+                        <span style="color: #ffffff">window.clear(sf::Color::Black);</span>
+                        <span style="color: #ffffff">window.draw(Background);</span>
+                        <span style="color: #ffffff">window.draw(mainTitle);</span>
+                        <span style="color: #ffffff">window.draw(instructions);</span>
+                        <span style="color: #ffffff">window.draw(greeting);</span>
+                        <span style="color: #ffffff">window.draw(highScores);</span>
+                        <span style="color: #ffffff">window.draw(changeName);</span>
+                        <span style="color: #ffffff">window.draw(normalMode);</span>
+                        <span style="color: #ffffff">window.draw(invadersMode);</span>
+                        <span style="color: #ffffff">window.draw(moveableObj.getSprite());</span>
+                        <span style="color: #ffffff">window.draw(exit);</span>
+                        <span style="color: #ffffff">window.draw(credits);</span>
+                        <span style="color: #ffffff">window.draw(bird.getSprite());</span>
+                        <span style="color: #ffffff">window.display();</span>
+                    <span style="color: #ffffff">}</span>
+                <span style="color: #ffffff">}</span>
+
+                <span style="color: #ffffff">}</span>
+                </pre></div>
+
+
+            </div>
+            <br><br>
+            <div>
+                <div style="background: #111111; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-style: italic; background-color: #0f140f"></span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  MenuScene.hpp</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  FlappyBird</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Created by Kyle Hurd on 11/25/20.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Copyright © 2020 Kyle Hurd. All rights reserved.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  Description</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  In the menu scene, the user playing the game has the ability to use</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  the arrow keys and ENTER button to select an item from the menu options</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  list. When one of the menu items is selected (such as high scores, change</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  name, normal mode, etc.) the menu scene detects which item the user wants</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  to go to and updates the currentState, a global variable declared in the</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  helperFunctions file. Upon updating the state, the scene returns to main()</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//  [or the function call] without performing any more actions.</span>
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">//</span>
+
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#ifndef MenuScene_hpp</span>
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#define MenuScene_hpp</span>
+
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &lt;SFML/Audio.hpp&gt;</span>
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &lt;SFML/Graphics.hpp&gt;</span>
+
+                <span style="color: #008800; font-style: italic; background-color: #0f140f">// Classes</span>
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &quot;Classes/Bird.hpp&quot;</span>
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &quot;Classes/Pipes.hpp&quot;</span>
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &quot;Classes/helperFunctions.hpp&quot;</span>
+
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &lt;fstream&gt;</span>
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &lt;iostream&gt;</span>
+
+                <span style="color: #fb660a; font-weight: bold">namespace</span> <span style="color: #ffffff">MenuScene</span> <span style="color: #ffffff">{</span>
+
+                <span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ffffff">menu(sf::RenderWindow</span> <span style="color: #ffffff">&amp;);</span>
+
+                <span style="color: #ffffff">}</span>
+                <span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#endif </span><span style="color: #008800; font-style: italic; background-color: #0f140f">/* MenuScene_hpp */</span><span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f"></span>
+                </pre></div>
+            </div>
+        </div>
+    </body>
+</html>

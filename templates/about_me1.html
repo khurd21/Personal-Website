@@ -1,0 +1,69 @@
+{% extends "head.html" %}
+
+{% block title %}About Me{% endblock %}
+
+{% block content %}
+
+<h1 class="title center">
+	A Little Bit About Me....
+</h1>
+
+<!---Body-->
+<div id="box" class="center">
+	<center><br>
+		<img src="{{url_for('static', filename='images/me.jpg')}}" width=233 height=350>
+		<br>
+
+		<div class="blocktext" style="background-color: black">
+			My name is Kyle Hurd and I am currently attending Washington State University to pursue a bachelor’s degree in Computer Science. I have a cumulative GPA of 3.95 and actively participate in local musicals, fun runs, and skydiving! I earned my associate of arts degree in music from Grays Harbor Community College in 2017 and briefly attended Pacific Lutheran University to study music composition before transferring to Washington State University in 2019.
+		</div><br>
+
+		<img src="{{url_for('static', filename='images/program_logo.jpg')}}" width=200 height=200>
+		<br>
+
+
+		<div class="blocktext" style="background-color: black">
+			<b>Programming!</b> At Washington State University I have studied C/C++ and also currently help as a TA for an introduction to Python course. As a teacher's assistant I grade student assignments and host weekly labs which cover basic principles such as lists, dictionaries, graphical user interfaces, file systems, and more. I created this site using HTML and Flask and use apache2 with a dynamic network service to maintain a static url. I update my website regularly, adding new projects such as music and programs. Check back periodically to see any new content I have added!
+		</div><br>
+
+		<img src="{{url_for('static', filename='images/tool.png')}}" width=200 height=200>
+		<br>
+
+
+
+		<div class="blocktext" style="background-color: black">
+			<b>Work Experience</b> In the Summer of 2020, I worked with the Aberdeen School District with the information technology department. My tasks included installing access points for wireless connections and installing camera systems around the district. Other tasks included repairing student and teacher laptops in which I would diagnose hardware or software issues, repair the faulty item, and complete a work order showing all components used to make the repairs. 
+		</div>
+		<br>
+
+		<video width="320" height="240" autoplay loop muted playsinline>
+			<source src="{{url_for('static', filename='videos/freeflying.mp4')}}" type="video/mp4">
+		</video>
+		<br>
+
+
+		<div class="blocktext" style="background-color: black">
+			<b>Skydiving!</b> I am an avid skydiver with 375 jumps to my name and a type <a id="link" href="https://skydiveparacletexp.com/2017/02/15/skydiving-license-levels/">'C' License</a> which grants me permission to jump with a camera, wingsuit, and perform small demonstration jumps. My goal now is to continue advancing my freeflying skills and eventually become an instructor in the sport. For now, I am jumping for fun at my home dropzone in Shelton, WA and traveling to other dropzones around the state whenever I can!
+		</div><br>
+
+		<img src="{{url_for('static', filename='images/music.png')}}" width=200 height=200>
+		<br>
+
+		<div class="blocktext" style="background-color: black">
+			<b>Music!</b> I enjoy composing and playing music. My instruments of choice are the French horn and guitar. In 2018 I composed a jazz rendition of Tom Petty's "Free Fallin'" for the Grays Harbor College's graduation ceremony and in 2019 made a solo guitar piece for a composer's forum at Pacific Lutheran University (found in the My Music tab). I still avidly play music and will continue to make music wherever possible!
+		</div><br>
+	</center>
+</div>
+
+<!--
+<section>
+	<p>
+	<center><br>
+		<img src="{{url_for('static', filename='images/program_logo.jpg')}}" width=200 height=200>
+	</center>
+	<b>Programming!</b> At WSU I have studied C/C++ and also currently help as a TA for an introduction to Python course. I created this site using HTML and Flask. I update my website regularly, adding new projects such as music and programs. Check back periodically to see any new content I have added! 
+	</p>
+</section>
+-->
+
+{% endblock %}

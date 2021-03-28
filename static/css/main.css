@@ -1,0 +1,120 @@
+{
+	box-sizing: border-box;
+}
+body {
+	margin: 0;
+	font-size: 100%;
+}
+
+#box div {
+    width: 298px;
+    margin: 10px;
+    background-color: #c3d0d4;
+	color: white;
+	text-align: center;
+	border-radius: 15px;
+}
+
+.center {
+	text-align: center;
+	color: white;
+}
+.title {
+	font-size: 25px;
+}
+.column {
+	float: left;
+	color: white;
+}
+.left {
+	width: 33.33%;
+}
+.left_half {
+	width: 50%;
+}
+.middle {
+	width: 33.33%;
+}
+.right {
+	width: 33.34%;
+}
+.right_half {
+	width: 50%;
+}
+.row: after {
+	content: "";
+	display: table;
+	clear: both;
+}
+.blocktext {
+	text-align: center;
+	margin: 10px auto;
+	padding: 12px;
+	background-color: black;
+	border-radius: 0 0 50px 50px;
+	width: 80%;
+}
+ul {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	background-color: #444;
+	height: 100%;
+	overflow: auto;
+}
+li {
+	float: left;
+}
+#nav li a {
+	display: block;
+	color: #000;
+	padding: 12px 14px;
+	text-decoration: none;
+}
+#nav li a.active {
+	background-color: #808080;
+	color: white;
+}
+#nav li a:hover:not(.active) {
+	background-color: #555;
+	color: white;
+}
+#links a:link, a:visited {
+	background-color: #000;
+	color: white;
+	padding: 15px 25px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+}
+#links a:hover, a:active {
+	background-color: grey;
+}
+.dropbtn {
+	background-color: #555;
+	color: white;
+	padding: 16px;
+	border: none;
+}
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+}
+.dropdown-content a {
+	color: white;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+.dropdown-content a:hover {background-color: #}
