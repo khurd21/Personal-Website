@@ -1,0 +1,53 @@
+{% extends "website_design_template.html" %}
+
+{% block title %}About Me{% endblock %}
+
+{% block extend_css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/social_media_links.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/neon_font.css')}}">
+{% endblock %}
+
+{% block content_within_container %}
+<p id="neon"></p>
+<center>
+	<img src="{{url_for('static', filename='images/me.jpg')}}" width=228 height=350>
+	<p id="neon"></p>
+	<p id="neon_with_border">
+	My name is Kyle Hurd and I am currently attending Washington State University to
+	pursue a bachelor’s degree in Computer Science. I have a cumulative GPA of 3.95
+	and actively participate in local musicals, fun runs, and skydiving! I earned
+	my associate of arts degree in music from Grays Harbor Community College in 2017
+	and briefly attended Pacific Lutheran University to study music composition
+	before transferring to Washington State University in 2019.
+	</p>
+</center>
+
+<p id="neon"></p>
+<center>
+	<img src="{{url_for('static', filename='images/program_logo.jpg')}}">
+	<p id="neon"></p>
+	<p id="neon_with_border">
+	Programming! At Washington State University I have studied C/C++ and also currently
+	help as a TA for an introduction to Python course. As a teacher's assistant I grade
+	student assignments and host weekly labs which cover basic principles such as lists,
+	dictionaries, graphical user interfaces, file systems, and more. I created this site
+	using HTML and Flask and use apache2 with a dynamic network service to maintain a
+	static url. I update my website regularly, adding new projects such as music and programs.
+	Check back periodically to see any new content I have added!
+	</p>
+</center>
+
+<p id="neon"></p>
+<center>
+	<video width="320" height="240" autoplay loop muted playsinline>
+		<source src="{{url_for('static', filename='videos/freeflying.mp4')}}" type="video/mp4">
+	</video>
+	<p id="neon_with_border">
+	Skydiving! I am an avid skydiver with 375 jumps to my name and a type 'C' License
+	which grants me permission to jump with a camera, wingsuit, and perform small
+	demonstration jumps. My goal now is to continue advancing my freeflying skills
+	and eventually become an instructor in the sport. For now, I am jumping for fun
+	at my home dropzone in Shelton, WA and traveling to other dropzones around the state
+	whenever I can!
+	</p>
+{% endblock %}

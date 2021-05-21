@@ -1,0 +1,30 @@
+{% extends "website_design_template.html" %}
+
+{% block title %}Main{% endblock %}
+
+{% block extend_css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/neon_font.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/animations.css')}}">
+{% endblock %}
+
+
+{% block content_within_container %}
+<div class="fade-in-text grow">
+	<center>
+		<h1 id="neon">Kyle Hurd</h1>
+	</center>
+</div>
+
+<div class="fade-in-text">
+	<center>
+		<p id="neon">
+		Welcome to my site! I am a student at Washington State University
+		intending to graduate Winter 2022 as a computer science major.
+		I created this site to showcase and access my code. It will serve
+		as a digital portfolio of my work. Please have a look around using
+		the navigation bar at the top of the page!
+		</p>
+	</center>
+</div>
+
+{% endblock %}

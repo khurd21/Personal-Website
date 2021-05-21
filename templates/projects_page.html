@@ -1,0 +1,37 @@
+{% extends "website_design_template.html" %}
+
+{% block title %}Projects{% endblock %}
+
+{% block extend_css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/neon_font.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/button.css')}}">
+{% endblock %}
+
+{% block content_within_container %}
+
+<p id="neon"></p>
+
+<div class="button-container">
+	<a 
+	 id="button"
+	 href="https://github.com/khurd21"
+	 target="_blank"
+	 rel="noreferrer noopener"
+	 class="btn"
+	 >
+		GitHub Homepage
+	</a>
+</div>
+
+<div class="button-container">
+	<a
+	id="button"
+	href="{{url_for('metar_weather_data.render_metar_weather_main_page')}}"
+	class="btn"
+	>
+	Metar Weather Data
+	</a>
+</div>
+	
+
+{% endblock %}
