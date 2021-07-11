@@ -52,3 +52,7 @@ def render_my_tabs_page():
             current_page = MENU_BAR_STATE.MY_MUSIC,
             MENU_BAR_STATE = MENU_BAR_STATE,
             )
+
+@menu_bar_tabs.route('/resume')
+def render_resume_page():
+    return render_template('resume_page.html')
