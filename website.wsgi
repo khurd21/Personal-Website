@@ -7,4 +7,4 @@ with open(activate_this) as file_:
 import sys
 sys.path.insert(0, '/var/www/website')
 
-from __init__ import app as application
+from run_app import app as application

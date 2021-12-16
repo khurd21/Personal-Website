@@ -1,5 +1,5 @@
-from src.menu_bar_state import MENU_BAR_STATE
-from flask import Blueprint, render_template, url_for
+from app.model.menu_bar_state import MENU_BAR_STATE
+from flask import Blueprint, render_template, get_template_attribute, url_for
 import ast
 
 menu_bar_tabs = Blueprint('menu_bar_tabs', __name__)
@@ -7,11 +7,9 @@ menu_bar_tabs = Blueprint('menu_bar_tabs', __name__)
 
 @menu_bar_tabs.route('/')
 def render_home_page():
-    return render_template(
-            'home_page.html',
-            current_page = MENU_BAR_STATE.MAIN,
-            MENU_BAR_STATE = MENU_BAR_STATE
-            )
+    #hello = get_template_attribute('base.html', 'hello')
+    #return hello('World!')
+    return render_template('home_page.html')
 
 
 @menu_bar_tabs.route('/projects')
@@ -55,4 +53,4 @@ def render_my_tabs_page():
 
 @menu_bar_tabs.route('/resume')
 def render_resume_page():
-    return render_template('resume_page.html')
+    return render_template('resume.html')

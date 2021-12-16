@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+
+<div class="card bg-dark text-white">
+	<img src="{{ url_for('static', filename='images/plane.jpg') }}" class="card-img" alt="">
+	<div class="card-img-overlay">
+	  	<h3 class="card-title">Kyle Hurd</h3>
+	  	<p class="card-text">Home Page</p>
+	</div>
+</div>
+
+<div class="text-white container-content">
+	<h1 class="text-end card-title">Welcome to my Site!</h1>
+	<p class="text-start card-text">
+		I am a student at Washington State University
+		intending to graduate Winter 2022 as a computer science major.
+		I created this site to showcase and access my code. It will serve
+		as a digital portfolio of my work. Please have a look around using
+		the navigation bar at the top of the page!
+	</p>
+</div>
+
+<div class="card bg-dark text-white">
+	<a href="#" class="text-white">
+		<img src="{{ url_for('static', filename='images/music_frequency.png') }}" class="card-img" style="height:500px;" alt="">
+		<div class="card-img-overlay">
+			<h1 class="text-start card-title container-content-h">My Music</h1>
+		</div>
+	</a>
+</div>
+
+<div class="card bg-dark text-white">
+	<a href="#" class="text-white">
+		<img src="{{ url_for('static', filename='images/beer_flanked_by_water.jpg') }}" class="card-img" alt="">
+		<div class="card-img-overlay">
+			<h1 class="text-end card-title container-content-h">About Me</h1>
+		</div>
+	</a>
+</div>
+
+<div class="card bg-dark text-white container-content">
+	<h1 class="text-start card-title">My Projects</h1>
+	<ul class="list-inline">
+		<li class="list-inline-item">
+			<a href="#"><button type="button" class="btn btn-outline-light btn-lg">Metar Map</button></a>
+		</li>
+		<li class="list-inline-item">
+			<a href="#"><button type="button" class="btn btn-outline-light btn-lg">Cougar Research Application Portal</button></a>
+		</li>
+		<br><br>
+		<br><br>
+		<br><br>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+.main-background {
+	background: linear-gradient(to bottom, rgb(88, 0, 0) 0%, #000000 100%) fixed;
+}
+
+.container-content {
+	padding: 5%;
+}
+
+.container-content-h {
+	padding-left: 5%;
+	padding-right: 5%;
+}

@@ -5,7 +5,7 @@ import ssl
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
-from src.menu_bar_state import MENU_BAR_STATE
+from app.model.menu_bar_state import MENU_BAR_STATE
 
 from flask import Blueprint, render_template, url_for
 import xml.etree.ElementTree as element_tree
@@ -52,7 +52,7 @@ def get_weather_conditions(head):
         precip_in:float = float(reports.find('precip_in').text) if reports.find('precip_in') is not None else 0.0
         elevation_m:float = float(reports.find('elevation_m').text) if reports.find('elevation_m') is not None else 0.0
 
-        sky_conditions:list[{}] = []
+        sky_conditions:list = []
         for skies in reports.iter('sky_condition'):
             tmp = {"cover" : skies.get('sky_cover'), "cloud_base_ft_agl" : int(skies.get('cloud_base_ft_agl', default=0))}
             sky_conditions.append(tmp)
