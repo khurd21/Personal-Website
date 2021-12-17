@@ -23,7 +23,7 @@
 	</p>
 </div>
 
-<div class="card bg-dark text-white">
+<div class="card card-dynamic bg-dark text-white">
 	<a href="#" class="text-white">
 		<img src="{{ url_for('static', filename='images/music_frequency.png') }}" class="card-img" style="height:500px;" alt="">
 		<div class="card-img-overlay">
@@ -32,7 +32,7 @@
 	</a>
 </div>
 
-<div class="card bg-dark text-white">
+<div class="card card-dynamic bg-dark text-white">
 	<a href="#" class="text-white">
 		<img src="{{ url_for('static', filename='images/beer_flanked_by_water.jpg') }}" class="card-img" alt="">
 		<div class="card-img-overlay">
@@ -48,10 +48,27 @@
 			<a href="#"><button type="button" class="btn btn-outline-light btn-lg">Metar Map</button></a>
 		</li>
 		<li class="list-inline-item">
-			<a href="#"><button type="button" class="btn btn-outline-light btn-lg">Cougar Research Application Portal</button></a>
+			<a href="https://github.com/khurd21/Cougar-Research-Application-Portal"
+				target="_blanks" rel="noopener noreferrer">
+				<button type="button" class="btn btn-outline-light btn-lg">
+					Cougar Research Application Portal
+				</button>
+			</a>
 		</li>
-		<br><br>
-		<br><br>
-		<br><br>
+	</ul>
+	<ul class="list-inline">
+		<li class="list-inline-item">
+			<a href="https://github.com/khurd21/Cpts-315-Final-Project-Sentence-Generator"
+				target="_blanks" rel="noopener noreferrer">
+				<button type="button" class="btn btn-outline-light btn-lg">
+					Sentence Generator
+				</button>
+			</a>
+		</li>
+	</ul>
+	<br><br>
+	<br><br>
+	<br><br>
+
 </div>
 {% endblock %}
