@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}About Me{% endblock %}
+
+{% block content %}
+
+
+    <div class="container-content">
+        <h1 class="text-white">About Me</h1><br>
+
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                <div class="col card border-dark mb-3 mx-auto" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ url_for('static', filename='images/me.jpg') }}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">About Me</h5>
+                                <p class="card-text">My name is Kyle Hurd and I am currently attending Washington State University to
+                                    pursue a bachelor’s degree in Computer Science. I have a cumulative GPA of 3.95 and actively participate
+                                    in local musicals, fun runs, and skydiving! I earned my associate of arts degree in music from Grays
+                                    Harbor Community College in 2017 and briefly attended Pacific Lutheran University to study music
+                                    composition before transferring to Washington State University in 2019.
+                                </p>
+                                <p class="card-text"><small class="text-muted">Last updated Dec. 19, 2021</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="col card border-dark mb-3 mx-auto" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ url_for('static', filename='images/program_logo.jpg') }}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Programming</h5>
+                                <p class="card-text">At Washington State University I have studied C/C++, Python and also currently
+                                    help as a TA for an introduction to Python course. As a teacher's assistant I grade student assignments
+                                    and host weekly labs which cover basic principles such as lists, dictionaries, graphical user interfaces,
+                                    file systems, and more. I created this site using HTML and Flask and use apache2 with a dynamic network
+                                    service to maintain a static url. I update my website regularly, adding new projects such as music and
+                                    programs. Check back periodically to see any new content I have added!
+                                </p>
+                                <p class="card-text"><small class="text-muted">Last updated Dec. 19, 2021</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="col card border-dark mb-3 mx-auto" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="row-md-4">
+                            <video class="img-fluid rounded-start" autoplay loop muted playsinline>
+                                <source src="{{url_for('static', filename='videos/freeflying.mp4')}}" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="row-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Skydiving</h5>
+                                <p class="card-text">I am an avid skydiver with 450 jumps to my name and a type 'C' License
+                                    which grants me permission to jump with a camera, wingsuit, and perform small demonstration jumps.
+                                    My goal now is to continue advancing my freeflying skills and eventually become an instructor in the
+                                    sport. For now, I am jumping for fun at my home dropzone in Shelton, WA and traveling to other dropzones
+                                    around the state whenever I can!
+                                </p>
+                                <p class="card-text"><small class="text-muted">Last updated Dec. 19, 2021</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="col card border-dark mb-3 mx-auto" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="row-md-4">
+                            <img src="{{ url_for('static', filename='images/2020_album_cover.png') }}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="row-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Music</h5>
+                                <p class="card-text">Music is one of my favorite interests. I studied the French Horn and guitar throughout
+                                    elementary school and continued to play them at Pacific Lutheran University. During the early summer of
+                                    2020, I made an album appropriately called 20/20. It is one of my favorite works I have made so far and plan
+                                    to continue improving my music-creating skills for many years to come! <br><br>
+                                    <a href="#"><button type="button" class="btn btn-outline-primary">Check out my music!</button></a>
+                                </p>
+                                <p class="card-text"><small class="text-muted">Last updated Dec. 19, 2021</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+{% endblock %}

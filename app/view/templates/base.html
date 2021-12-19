@@ -20,14 +20,27 @@
 {% block navbar %}
 
 <!-- Fixed Navbar -->
-<nav class="navbar navbar-light-reverse bg-dark">
+<nav class="navbar navbar-expand navbar-light-reverse bg-dark">
     <div class="container-fluid">
 
         <!-- LHS -->
-        <a class="navbar-brand text-white a-dynamic" href="{{ url_for('menu_bar_tabs.render_home_page')}}">
+        <a class="navbar navbar-brand text-white a-dynamic" href="{{ url_for('menu_bar_tabs.render_home_page')}}">
             <i class="bi bi-person-circle"></i>
             khurd21.ddns.net
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link text-white a-dynamic" href="#">
+              <i class="bi bi-music-note-beamed"></i>
+              My Music
             </a>
+            <a class="nav-link text-white a-dynamic" href="{{ url_for('menu_bar_tabs.about_me') }}">
+              <i class="bi bi-file-person-fill"></i>
+              About Me
+            </a>
+          </div>
+        </div>
 
         <!-- RHS -->
         <ul class="navbar-right">
@@ -41,7 +54,7 @@
                 Resume
             </a>
 
-            <a class="navbar-brand text-white a-dynamic" href="#">
+            <a class="navbar-brand text-white a-dynamic" href="{{ url_for('menu_bar_tabs.contact_me') }}">
                 <i class="bi bi-envelope"></i>
                 Contact Me
             </a>
@@ -49,18 +62,4 @@
     </div>
 </nav>
 
-<!-- Dynamic Navbar -->
-<div class="collapse" id="navbarToggleExternalContent">
-    <div class="bg-dark p-4">
-      <h5 class="text-white h4">Collapsed content</h5>
-      <span class="text-muted">Toggleable via the navbar brand.</span>
-    </div>
-  </div>
-  <nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="true" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon a-dynamic"></span>
-      </button>
-    </div>
-  </nav>
 {% endblock %}

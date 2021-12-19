@@ -5,7 +5,6 @@ import ssl
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
-from app.model.menu_bar_state import MENU_BAR_STATE
 
 from flask import Blueprint, render_template, url_for
 import xml.etree.ElementTree as element_tree
@@ -92,8 +91,6 @@ def render_metar_weather_main_page(name: str = 'KSHN-KBFI-KPUW-KHQM'):
             'metar_weather_page.html',
             conditions = conditions,
             stations = stations,
-            current_page = MENU_BAR_STATE.PROJECTS,
-            MENU_BAR_STATE = MENU_BAR_STATE
             )
 
 
@@ -106,6 +103,4 @@ def render_metar_weather_custom_main_page(airport_list: str):
             'metar_weather_page.html',
             conditions = conditions,
             stations = stations,
-            current_page = MENU_BAR_STATE.PROJECTS,
-            MENU_BAR_STATE = MENU_BAR_STATE
             )
