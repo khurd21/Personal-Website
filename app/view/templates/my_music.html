@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}My Music{% endblock %}
+
+
+{% block content %}
+
+
+<div class="text-white container-content">
+<h1>My Music</h1>
+<br>
+<div class="button-container">
+	<a href="{{ url_for('menu_bar_tabs.tabs') }}">
+		<button type="button" class="btn btn-outline-light btn-lg" disabled>
+			Tabs
+		</button>
+	</a>
+</div>
+<div class="container-content">
+<div class="button-container">
+	<a
+	href="https://soundcloud.com/kyle-hurd-3/sets/twn-twn"
+	target="_blank"
+	rel="noreferrer noopener"
+	>
+	<button type="button" class="btn btn-outline-light btn-lg">
+		Album 20/20
+	</button>
+	</a>
+</div>
+<br>
+	<iframe width="100%" height="500" scrolling="no" frameborder="yes" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1230176197&color=%23111213&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100; position: relative;"><a href="https://soundcloud.com/kyle-hurd-3" title="Kyle Hurd" target="_blank" style="color: #cccccc; text-decoration: none;">Kyle Hurd</a> · <a href="https://soundcloud.com/kyle-hurd-3/sets/twn-twn" title="20/20" target="_blank" style="color: #cccccc; text-decoration: none;">20/20</a></div>
+<br><br><br><br>
+<div class="button-container">
+	<a
+	href="https://soundcloud.com/kyle-hurd-3/sets/composers-forum-2018-live"
+	target="_blank"
+	rel="noreferrer noopener"
+	>
+	<button type="button" class="btn btn-outline-light btn-lg">
+		Composer's Forum 2018 (Live)
+	</button>
+	</a>
+</div>
+<br>
+	<iframe width="100%" height="500" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1230177967&color=%23685f58&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/kyle-hurd-3" title="Kyle Hurd" target="_blank" style="color: #cccccc; text-decoration: none;">Kyle Hurd</a> · <a href="https://soundcloud.com/kyle-hurd-3/sets/composers-forum-2018-live" title="Composer&#x27;s Forum 2018 (Live)" target="_blank" style="color: #cccccc; text-decoration: none;">Composer&#x27;s Forum 2018 (Live)</a></div>
+</div>
+</div>
+{% endblock %}

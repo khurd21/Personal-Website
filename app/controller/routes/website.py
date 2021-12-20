@@ -2,6 +2,9 @@ from config import Config
 from flask import Blueprint, render_template, url_for, request, flash, redirect
 
 from app.model.message_model import Message
+from app.model.tab_model import Song
+
+import csv
 
 menu_bar_tabs = Blueprint('menu_bar_tabs', __name__)
 menu_bar_tabs.template_folder = Config.TEMPLATE_FOLDER
@@ -40,3 +43,18 @@ def contact_me():
 @menu_bar_tabs.route('/about_me')
 def about_me():
     return render_template('about_me.html')
+
+
+@menu_bar_tabs.route('/my_music')
+def my_music():
+    return render_template('my_music.html')
+
+
+@menu_bar_tabs.route('/tabs')
+def tabs():
+
+    with open(Config.ROOT_PATH + '/app/view' + url_for('static', filename='music_tabs/songs.csv')) as csv_file:
+        reader = csv.reader(csv_file)
+        songs = [Song(artist=row[0], mp3=row[1], pdf=row[2]) for row in reader]
+
+    return render_template('tabs.html', songs=songs[1:])

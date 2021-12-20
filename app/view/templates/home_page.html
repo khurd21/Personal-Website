@@ -24,7 +24,7 @@
 </div>
 
 <div class="card card-dynamic bg-dark text-white">
-	<a href="#" class="text-white">
+	<a href="{{ url_for('menu_bar_tabs.my_music') }}" class="text-white">
 		<img src="{{ url_for('static', filename='images/music_frequency.png') }}" class="card-img" style="height:500px;" alt="">
 		<div class="card-img-overlay">
 			<h1 class="text-start card-title container-content-h">My Music</h1>
@@ -45,7 +45,7 @@
 	<h1 class="text-start card-title">My Projects</h1>
 	<ul class="list-inline">
 		<li class="list-inline-item">
-			<a href="#"><button type="button" class="btn btn-outline-light btn-lg">Metar Map</button></a>
+			<a href="#"><button type="button" class="btn btn-outline-light btn-lg" disabled>Metar Map</button></a>
 		</li>
 		<li class="list-inline-item">
 			<a href="https://github.com/khurd21/Cougar-Research-Application-Portal"
