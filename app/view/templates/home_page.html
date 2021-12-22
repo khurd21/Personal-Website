@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+
+<div class="card bg-dark text-white">
+	<img src="{{ url_for('static', filename='images/plane.jpg') }}" class="card-img" alt="">
+	<div class="card-img-overlay">
+	  	<h3 class="card-title">Kyle Hurd</h3>
+	  	<p class="card-text">Home Page</p>
+	</div>
+</div>
+
+<div class="text-white container-content">
+	<h1 class="text-end card-title">Welcome to my Site!</h1>
+	<p class="text-start card-text">
+		I am a student at Washington State University
+		intending to graduate Winter 2022 as a computer science major.
+		I created this site to showcase and access my code. It will serve
+		as a digital portfolio of my work. Please have a look around using
+		the navigation bar at the top of the page!
+	</p>
+</div>
+
+<!-- My Music -->
+<div class="card card-dynamic bg-dark text-white">
+	<a href="{{ url_for('menu_bar_tabs.my_music') }}" class="text-white">
+		<img src="{{ url_for('static', filename='images/music_frequency.png') }}" class="card-img" style="height:500px;" alt="">
+		<div class="card-img-overlay">
+			<h1 class="text-start card-title container-content-h">My Music</h1>
+		</div>
+	</a>
+</div>
+
+<!-- About Me -->
+<div class="card card-dynamic bg-dark text-white">
+	<a href="{{ url_for('menu_bar_tabs.about_me') }}" class="text-white">
+		<img src="{{ url_for('static', filename='images/beer_flanked_by_water.jpg') }}" class="card-img" alt="">
+		<div class="card-img-overlay">
+			<h1 class="text-end card-title container-content-h">About Me</h1>
+		</div>
+	</a>
+</div>
+
+<!-- Projects -->
+<div class="card bg-dark text-white container-content">
+	<h1 class="text-start card-title">My Projects</h1>
+	<ul class="list-inline">
+
+		<!-- Metar Map (disabled) -->
+		<li class="list-inline-item">
+			<a href="#"><button type="button" class="btn btn-outline-light btn-lg" disabled>Metar Map</button></a>
+		</li>
+
+		<!-- Cougar Research Application Portal -->
+		<li class="list-inline-item">
+			<a href="https://github.com/khurd21/Cougar-Research-Application-Portal"
+				target="_blanks" rel="noopener noreferrer">
+				<button type="button" class="btn btn-outline-light btn-lg">
+					Research Application Portal
+				</button>
+			</a>
+		</li>
+	</ul>
+
+	<!-- Sentence Generator -->
+	<ul class="list-inline">
+		<li class="list-inline-item">
+			<a href="https://github.com/khurd21/Cpts-315-Final-Project-Sentence-Generator"
+				target="_blanks" rel="noopener noreferrer">
+				<button type="button" class="btn btn-outline-light btn-lg">
+					Sentence Generator
+				</button>
+			</a>
+		</li>
+
+		<li class="list-inline-item">
+			<a href="https://github.com/khurd21/Zoom_Mate"
+				target="_blanks" rel="noopener noreferrer">
+				<button type="button" class="btn btn-outline-light btn-lg">
+					Zoom Mate
+				</button>
+			</a>
+		</li>
+	</ul>
+	<br><br>
+	<br><br>
+	<br><br>
+
+</div>
+{% endblock %}

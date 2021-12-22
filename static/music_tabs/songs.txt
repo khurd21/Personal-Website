@@ -1,6 +1,0 @@
-[
-{'new': True, 'artist': 'Fleetwood Mac', 'song': 'Never Going Back Again', 'pdf_location': '../static/music_tabs/pdfs/Never_Going_Back_Again.pdf', 'mp3_location': '../static/music_tabs/mp3s/Never_Going_Back_Again.mp3'},
-{'new': True, 'artist': 'Kyle Hurd', 'song': 'Crash and Burn Acoustic Solo (Pt. 1)', 'pdf_location': '../static/music_tabs/pdfs/Crash_And_Burn.pdf', 'mp3_location': None},
-{'new': False, 'artist': 'Kyle Hurd', 'song': 'Harmonia (Pt. 2)', 'pdf_location': '../static/music_tabs/pdfs/Harmonia.pdf', 'mp3_location': None},
-{'new': False, 'artist': 'Kyle Hurd', 'song': 'The Belgian Horse (Pt. 3)', 'pdf_location': '../static/music_tabs/pdfs/The_Belgian_Horse.pdf', 'mp3_location': None}
-] 

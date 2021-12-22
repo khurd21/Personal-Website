@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Kyle Hurd - Resume</title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/resume.css')}}">
+
+    </head>
+
+    <body>
+        <div id="page-wrap">
+
+        <div id="contact-info" class="vcard">
+            <h1 class="fn">Kyle Hurd</h1>
+
+            <p>
+                <div class="contact-sep">
+                    <span>
+                        Website: <a 
+                                href="{{url_for('menu_bar_tabs.render_home_page')}}"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                        >khurd21.ddns.net</a>
+                    </span>
+
+                    <span>
+                        GitHub:  <a 
+                                href="https://github.com/khurd21" 
+                                target="_blank"
+                                rel="noreferrer noopener"
+                        >github.com/khurd21</a>
+                    </span>
+
+                    <span>
+                        Email:   <a
+                                class="email"
+                                href="mailto:kyle.hurd@wsu.edu"
+                        >kyle.hurd@wsu.edu</a>
+                    </span>
+
+                    <span>
+                        Phone:   <a
+                                href="tel:3605890312"
+                        >360-589-0312</a>
+                    </span>
+                </div>
+            </p>
+        </div>
+
+        <div class="clear"></div>
+
+        <dl>
+            <dd class="clear"></dd>
+            <dt>Education</dt>
+            <dd>
+                <h2>BS Computer Science <span>2019-2022</span></h2>
+                <p>
+                    <strong><i>Washington State University - Pullman, WA</i></strong>
+                    <br/>
+                    <span class="tab"></span>
+                    3.95 GPA
+                </p>
+
+                <h2>AA Music <span>2015-2017</span></h2>
+                <p>
+                    <strong><i>Grays Harbor Community College - Aberdeen, WA</i></strong>
+                    <br/>
+                    <span class="tab"></span>
+                    3.93 GPA
+                </p>
+            </dd>
+
+        
+
+            <dd class="clear"></dd>
+
+            <dt>Work History</dt>
+            <dd>
+
+                <h2>Teacher's Assistant <span>08/2020 - present</span></h2>
+                <p>
+                    <strong><i>Washington State University - Pullman, WA</i></strong>
+                    <br/>
+                    <span class="tab">
+                        Host weekly labs, office hours, and grade programmming assignments
+                        that focus on programming in Python, reading and writing files,
+                        formatting and accessing text files, and utilizing graphical modules such as tkinter.
+                    </span>
+                </p>
+
+                <h2>Software Engineer Intern <span>10/2021 - 12/2021</span></h2>
+                <p>
+                    <strong><i>Sweitzer Engineering Laboratories - Pullman, WA</i></strong>
+                    <br>
+                    <span class="tab">
+                        Assisted research and development team by testing firmware releases and improving and implementing
+                        new automated test cases for future releases.
+                    </span>
+                </p>
+
+
+                <h2>Transformer Maintenance<span>05/2021 - 08/2021</span></h2>
+                <p>
+                    <strong><i>Grays Harbor Public Utility District - Aberdeen, WA</i></strong>
+                    <br/>
+                    <span class="tab">
+                        Repair and service single and three phase transformers providing power to over 42,000 customers
+                        in Grays Harbor County. Respond to oil spills
+                        and maintain inventory of all electrical equipment in the field using a local
+                        Application Programming Interface that categorizes the transformers based on the current state of repair.
+                    </span>
+                </p>
+
+
+                <h2>Technology Summer Help <span>05/2020 - 08/2020</span></h2>
+                <p>
+                    <strong><i>Aberdeen School District - Aberdeen, WA</i></strong>
+                    <br/>
+                    <span class="tab">
+                        Installed wireless access points, cameras, and new phone systems for the school district.
+                        Repaired student and teacher laptops by diagnosing hardware or software issues, repairing the problem,
+                        and completing work orders.
+                    </span>
+                </p>
+            </dd>
+
+            <dd class="clear"></dd>
+
+            <dt>Personal Projects</dt>
+            <dd>
+                <h2>Skydiver Logbook</h2>
+                <p>
+                    <strong>Repo: <a
+                        href="https://github.com/khurd21/Skydiver_Logbook_GUI"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                    >github.com/khurd21/Skydiver_Logbook_GUI</a></strong>
+                    <br/>
+                    <span class="tab">
+                        A graphical user interface to view and log jumps for skydiving.
+                        Quickly add a jump with pre-filled jump information such as the current date,
+                        jump number, current equipment, and current dropzone based on defaul 
+                        modifiable if you need to change it!
+                   
+                    </span>
+                </p>
+
+                <h2>Zoom Mate</h2>
+                <p>
+                    <strong>Repo: <a
+                        href="https://github.com/khurd21/Zoom_Mate"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                    >github.com/khurd21/Zoom_Mate</a></strong>
+                    <br/>
+                    <span class="tab">
+                        A terminal based controller for the Zoom application. Currently only supporting
+                        MacOS, this controller can join meetings, toggle video and audio, end meetings,
+                        and share your screen all from the terminal!
+                    </span>
+                </p>
+            </dd>
+
+            <dd class="clear"></dd>
+
+            <dt>Hobbies</dt>
+            <dd>
+                <h2>Skydiving</h2>
+                <p>
+                    <span class="tab">
+                        Co-founded the Washington State University Skydiving Club in 2019 in which two new
+                        jumpers became licensed in the sport and four skydivers from the unviersity participated
+                        in the club.
+                        <br/>
+                        Earned my type C-license in August 2019 and have completed 400 jumps since earning my A-license
+                        during the summer of 2017.
+                    </span>
+                </p>
+                <h2>Music</h2>
+                <p>
+                    <span class="tab">
+                        Released my first album, <a
+                        href="https://soundcloud.com/kyle-hurd-3/sets/twn-twn"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        >20/20</a>
+                        , which was a project I started during the first six months
+                        of quarantine.
+                        <br/>
+                        Performed in the pit orchestra for twelve musicals including <i>Mamma Mia, Mary Poppins,</i>
+                        and <i>Anything Goes</i>.
+                    </span>
+                </p>
+            </dd>
+        </dl>
+    </div>  
+        
+    </body>
+
+</html>

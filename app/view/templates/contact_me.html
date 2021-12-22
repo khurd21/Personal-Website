@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Me{% endblock %}
+
+{% block content %}
+
+<div class="text-white container-content">
+    <h1>Contact Me</h1>
+
+    <form action="" method="post">
+
+        <div class="container-content">
+            <p>You can reach me at <a href = "mailto: kyle.hurd@wsu.edu" class="link-light">kyle.hurd@wsu.edu</a>. Additionally, you can fill out the form
+            below!</p>
+
+            <div class="mb-3">
+                <label for="control-name">Name</label>
+                <input name="name" type="text" class="form-control" id="control-name" placeholder="John Smith" {% if name %}value="{{name}}"{% endif %}>
+            </div>
+
+            <div class="mb-3">
+                <label for="control-email">Email address</label>
+                <input name="email" class="form-control" id="control-email" placeholder="johnsmith@email.com" {% if email %}value="{{email}}"{% endif %}>
+            </div>
+
+            <div class="mb-3">
+                <label for="form-message" class="form-label">Message</label>
+                <textarea name="message" class="form-control" id="form-message" rows="5" placeholder="Enter your message here...">{% if message %}{{message}}{% endif %}</textarea>
+            </div>
+            <br>
+            <div class="d-grid gap-2 col-6 ">
+                <button type="submit" class="btn btn-primary">Send</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
