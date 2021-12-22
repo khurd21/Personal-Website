@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Login{% endblock %}
+
+{% block content %}
+
+<div class="container-content text-white">
+
+    <h1>Login</h1>
+
+    <form action="" method="post">
+
+        <div class="container-content">
+            
+            <div class="mb-3">
+                <label for="control-username">Username</label>
+                <input name="username" type="text" class="form-control" id="control-username" placeholder="john.smith" {% if username %}value="{{username}}"{% endif %}>
+            </div>
+
+            <div class="mb-3">
+                <label for="control-password">Password</label>
+                <input name="password" type="password" class="form-control" id="control-password" placeholder="password" {% if password %}value="{{password}}"{% endif %}>
+            </div>
+
+            <br>
+
+            <div class="d-grid gap-2 col-6 ">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+
+        </div>
+    </form>
+    
+
+</div>
+
+{% endblock %}

@@ -2,6 +2,8 @@ import app.model as md
 from app import session
 from app.model.validators import MessageValidate
 
+from datetime import datetime
+
 class Message(md.Base):
     __tablename__ = 'message'
 
@@ -9,11 +11,12 @@ class Message(md.Base):
     name    = md.Column(md.String(32),   nullable=False)
     email   = md.Column(md.String(32),   nullable=False)
     message = md.Column(md.String(1028), nullable=False)
+    date    = md.Column(md.DateTime, default=datetime.utcnow(), nullable=False)
 
     validators = MessageValidate()
 
     def __repr__(self):
-        return f'<Message id: {self.id} name: {self.name} email: {self.email}>'
+        return f'<Message id: {self.id} name: {self.name} email: {self.email} date: {self.date}>'
 
     
     def save_to_db(self):

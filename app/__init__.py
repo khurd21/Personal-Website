@@ -1,4 +1,6 @@
 from flask import Flask
+from flask_login import LoginManager
+from flask_moment import Moment
 from config import Config
 
 from sqlalchemy import create_engine
@@ -7,7 +9,10 @@ from sqlalchemy_utils import create_database, database_exists
 
 from app.model import Base
 
+
 Session = sessionmaker()
+
+
 engine = create_engine(Config.SQLALCHEMY_DATABASE_URI, echo=True)
 
 if not database_exists(engine.url):
@@ -15,6 +20,10 @@ if not database_exists(engine.url):
 
 Session.configure(bind=engine)
 session = Session()
+
+moment = Moment()
+login = LoginManager()
+login.login_view = 'auth_routes.login'
 
 def create_app(config=Config):
 
@@ -26,6 +35,8 @@ def create_app(config=Config):
     flask_app.template_folder = config.TEMPLATE_FOLDER
 
     Base.metadata.create_all(engine)
+    login.init_app(flask_app)
+    moment.init_app(flask_app)
 
     from app.controller.routes.website import menu_bar_tabs
     from app.controller.routes.auth_routes import auth_routes

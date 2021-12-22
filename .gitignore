@@ -5,3 +5,4 @@
 venv/
 website.db
 python_statements.py
+secret_key.txt

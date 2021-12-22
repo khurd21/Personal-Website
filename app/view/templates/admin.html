@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin - {{ current_user.username }}{% endblock %}
+
+{% block content %}
+
+
+<div class="container-content text-white">
+    <h1><b><ul>Admin Page</b></ul>Hello {{current_user.username}}</h1>
+
+   
+    {% if messages %} <!-- electives is the list of all of a student's technical electives-->
+        {% for message in messages %}
+            {% include '_message.html'%} <!-- experience is a single technical elective -->
+        {% endfor %}
+    {% else %}
+        <p> You currently have no messages.</p>
+    {% endif %}
+
+    <a class="nav-link text-white a-dynamic" href="{{ url_for('auth_routes.logout') }}">
+        <i class="bi bi-box-arrow-right"></i>
+        Logout
+    </a>
+
+</div>
+
+{% endblock %}
