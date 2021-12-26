@@ -1,3 +1,8 @@
+body {
+	overflow-x: hidden;
+}
+
+
 .main-background {
 	background: linear-gradient(to bottom, rgb(88, 0, 0) 0%, #000000 100%) fixed;
 }
